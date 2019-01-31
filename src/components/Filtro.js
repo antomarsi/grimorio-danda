@@ -37,7 +37,6 @@ function Filtro(props) {
               value={nameFilter}
               name="nameFilter"
               id="nameFilter"
-              minLength={2}
               debounceTimeout={300}
               onChange={e => props.handleChange(e)}
             />

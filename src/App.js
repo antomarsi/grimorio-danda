@@ -24,7 +24,6 @@ class App extends Component {
     }
   }
   addToFav(id) {
-    console.log("add id");
     if (!this.state.favorites.includes(id)) {
       this.setState({ favorites: [...this.state.favorites, id] }, () =>
         this.saveFav()
@@ -32,7 +31,6 @@ class App extends Component {
     }
   }
   removeFav(id) {
-    console.log("removing id");
     if (this.state.favorites.includes(id)) {
       this.setState(
         { favorites: this.state.favorites.filter(fav => fav !== id) },
