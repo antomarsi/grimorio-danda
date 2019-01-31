@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Topbar from "./components/Topbar";
 import { Route, Switch } from "react-router-dom";
-import Index from "./pages/Index";
+import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import MagiaInfo from "./pages/MagiaInfo";
 import magias from "./data/magias.json";
@@ -58,7 +58,7 @@ class App extends Component {
               exact
               path="/"
               render={props => (
-                <Index
+                <Home
                   {...props}
                   listaMagia={magias}
                   favorites={favorites}

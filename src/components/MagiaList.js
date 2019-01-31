@@ -27,7 +27,7 @@ class MagiaList extends Component {
               icon={isFav ? FullStar : EmptyStar}
               size="lg"
               onClick={() => this.toggleFav(isFav, magia.id)}
-            />
+            />{' '}
             <Link
               to={`${magia.id}/${slugify(magia.nome, { replacement: "-" })}`}
             >
@@ -86,7 +86,15 @@ class MagiaList extends Component {
       });
 
     return (
-      <ListGroup>{magias.map(magia => this.renderMagia(magia))}</ListGroup>
+      <div>
+        { (nameFilter.length || levelsFilter.length || circulosFilter.length || favoritesOnly) && magias.length > 0 && (
+          <h4>{magias.length} resultados encontrados</h4>
+        )}
+        <ListGroup>
+          { magias.length > 0 && magias.map(magia => this.renderMagia(magia))}
+          { magias.length === 0 && (<ListGroupItem><h3 className="text-center">Nenhuma magia encontrada!</h3></ListGroupItem>)}
+        </ListGroup>
+      </div>
     );
   }
 }

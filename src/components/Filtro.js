@@ -8,6 +8,7 @@ import {
   CardBody,
   CardTitle
 } from "reactstrap";
+import {DebounceInput} from 'react-debounce-input';
 
 function Filtro(props) {
   const { nameFilter, levelsFilter, circulosFilter, favoritesOnly } = props;
@@ -32,12 +33,15 @@ function Filtro(props) {
         <Form>
           <FormGroup>
             <Label for="nameFilter">Nome</Label>
-            <Input
-              name="nameFilter"
+            <DebounceInput element={Input}
               value={nameFilter}
+              name="nameFilter"
               id="nameFilter"
+              minLength={2}
+              debounceTimeout={300}
               onChange={e => props.handleChange(e)}
             />
+            
           </FormGroup>
           <FormGroup>
             <Label for="levelsFilter">

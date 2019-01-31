@@ -3,7 +3,7 @@ import Filtro from "../components/Filtro";
 import { Container, Row, Col } from "reactstrap";
 import MagiaList from "../components/MagiaList";
 
-class Index extends Component {
+class Home extends Component {
   // Filtros deNome, niveis (círculo/nivel),
   state = {
     nameFilter: "",
@@ -65,4 +65,4 @@ class Index extends Component {
   }
 }
 
-export default Index;
+export default Home;

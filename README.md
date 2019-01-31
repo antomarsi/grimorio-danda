@@ -1,5 +1,8 @@
 # Grimorio do Dand'a
+
 Esse projeto é um Grimório online para as magias do Dand'a RPG.
+
+Você pode acessar a versão final aqui: https://antomarsi.github.io/grimorio-danda/
 
 ## Getting Started
 
@@ -35,15 +38,18 @@ Depois de compilar, abrirá uma página em seu navegador para o caminho `http://
 
 Nenhum teste foi implementado.
 
-## Deployment
+## Building
 
-Para publicar para seu [GithubPages](https://pages.github.com/), certifique que o está habilitado em seu projeto, e que ele utilizará a branch `gh-pages`.
-Antes de publicar, certifique que o projeto foi *Buildado*, use o comando abaixo para compilar em produção:
+Para buildar o projeto, basta somente rodar o comando `build` do npm, assim ele irá criar uma pasta `build` na raiz do projeto. O build é rodado automaticamente se for feito um `deploy` do projeto.
+
 ```
 $ npm run build
 ```
 
-Após o build, utilize o comando abaixo para enviar para o seu [GithubPages](https://pages.github.com/):
+## Deployment
+
+Para publicar para seu [GithubPages](https://pages.github.com/), certifique que o está habilitado em seu projeto, e que ele utilizará a branch `gh-pages`.
+Utilize o comando abaixo para enviar para o seu [GithubPages](https://pages.github.com/), o `build` do projeto ocorrerá antes da publicação:
 
 ```
 $ npm run deploy
