@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/grimorio-danda/precache-manifest.9e9b4c4dd7d45190edf912bc850fe92b.js"
+  "/grimorio-danda/precache-manifest.76517dd84809c5d5b7f22593064bc70f.js"
 );
 
 workbox.clientsClaim();
