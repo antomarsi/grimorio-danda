@@ -49,24 +49,36 @@ class MagiaInfo extends Component {
                 <p key={index}>{descritor.descritor}</p>
               ))}
             </dd>
-            <dt className="col-sm-3">Tempo de execução</dt>
-            <dd className="col-sm-9">{magia.tempoExecucao}</dd>
-            <dt className="col-sm-3">Alcance</dt>
-            <dd className="col-sm-9">{magia.alcance}</dd>
-            <dt className="col-sm-3">Alvo</dt>
-            <dd className="col-sm-9">{magia.alvo}</dd>
-            <dt className="col-sm-3">Area</dt>
-            <dd className="col-sm-9">{magia.area}</dd>
-            <dt className="col-sm-3">Efeito</dt>
-            <dd className="col-sm-9">{magia.efeito}</dd>
-            <dt className="col-sm-3">Duração</dt>
-            <dd className="col-sm-9">{magia.duracao}</dd>
-            <dt className="col-sm-3">Teste de Resistência</dt>
-            <dd className="col-sm-9">{magia.testeResistencia}</dd>
-            <dt className="col-sm-3">Componente material</dt>
-            <dd className="col-sm-9">{magia.componenteMaterial}</dd>
-            <dt className="col-sm-3">Custo de XP</dt>
-            <dd className="col-sm-9">{magia.custoXP}</dd>
+            {magia.tempoExecucao && (
+              <dt className="col-sm-3">Tempo de execução</dt>
+            )}
+            {magia.tempoExecucao && (
+              <dd className="col-sm-9">{magia.tempoExecucao}</dd>
+            )}
+            {magia.alcance && <dt className="col-sm-3">Alcance</dt>}
+            {magia.alcance && <dd className="col-sm-9">{magia.alcance}</dd>}
+            {magia.alvo && <dt className="col-sm-3">Alvo</dt>}
+            {magia.alvo && <dd className="col-sm-9">{magia.alvo}</dd>}
+            {magia.area && <dt className="col-sm-3">Area</dt>}
+            {magia.area && <dd className="col-sm-9">{magia.area}</dd>}
+            {magia.efeito && <dt className="col-sm-3">Efeito</dt>}
+            {magia.efeito && <dd className="col-sm-9">{magia.efeito}</dd>}
+            {magia.duracao && <dt className="col-sm-3">Duração</dt>}
+            {magia.duracao && <dd className="col-sm-9">{magia.duracao}</dd>}
+            {magia.testeResistencia && (
+              <dt className="col-sm-3">Teste de Resistência</dt>
+            )}
+            {magia.testeResistencia && (
+              <dd className="col-sm-9">{magia.testeResistencia}</dd>
+            )}
+            {magia.componenteMaterial && (
+              <dt className="col-sm-3">Componente material</dt>
+            )}
+            {magia.componenteMaterial && (
+              <dd className="col-sm-9">{magia.componenteMaterial}</dd>
+            )}
+            {magia.custoXP && <dt className="col-sm-3">Custo de XP</dt>}
+            {magia.custoXP && <dd className="col-sm-9">{magia.custoXP}</dd>}
           </dl>
           <p className="h4">Descrição</p>
           <p dangerouslySetInnerHTML={{ __html: magia.descricao }} />

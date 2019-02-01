@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   Form,
   FormGroup,
@@ -6,102 +6,163 @@ import {
   Input,
   Card,
   CardBody,
-  CardTitle
+  CardTitle,
+  Button
 } from "reactstrap";
-import {DebounceInput} from 'react-debounce-input';
+import { DebounceInput } from "react-debounce-input";
 
-function Filtro(props) {
-  const { nameFilter, levelsFilter, circulosFilter, favoritesOnly } = props;
-  const circulosData = [
-    "Abjuração",
-    "Adivinhação",
-    "Encantamento",
-    "Evocação",
-    "Etérea",
-    "Solar",
-    "Lunar",
-    "Transmutação",
-    "Tempo&Espaço"
-  ];
+class Filtro extends Component {
+  state = {
+    levelsFilter: [
+      { name: 0, isChecked: false },
+      { name: 1, isChecked: false },
+      { name: 2, isChecked: false },
+      { name: 3, isChecked: false },
+      { name: 4, isChecked: false },
+      { name: 5, isChecked: false }
+    ],
+    circulosFilter: [
+      { name: "Abjuração", isChecked: false },
+      { name: "Adivinhação", isChecked: false },
+      { name: "Encantamento", isChecked: false },
+      { name: "Evocação", isChecked: false },
+      { name: "Etérea", isChecked: false },
+      { name: "Solar", isChecked: false },
+      { name: "Lunar", isChecked: false },
+      { name: "Transmutação", isChecked: false },
+      { name: "Tempo&Espaço", isChecked: false }
+    ]
+  };
 
-  return (
-    <Card>
-      <CardBody>
-        <CardTitle>
-          <h2>Filtro</h2>
-        </CardTitle>
-        <Form>
-          <FormGroup>
-            <Label for="nameFilter">Nome</Label>
-            <DebounceInput element={Input}
-              value={nameFilter}
-              name="nameFilter"
-              id="nameFilter"
-              debounceTimeout={300}
-              onChange={e => props.handleChange(e)}
-            />
-            
-          </FormGroup>
-          <FormGroup>
-            <Label for="levelsFilter">
-              Nível{" "}
-              <small className="text-muted">
-                Use CTRL para selecionar mais de uma opção
-              </small>
-            </Label>
-            <Input
-              value={levelsFilter}
-              type="select"
-              name="levelsFilter"
-              id="levelsFilter"
-              multiple
-              onChange={e => props.handleChange(e)}
-            >
-              {Array.from(Array(6).keys()).map(n => (
-                <option value={n} key={n}>
-                  {n}
-                </option>
+  onChangeMultiChoice(stateName, name) {
+    let newData = this.state[stateName].map(l => {
+      if (l.name === name) {
+        l.isChecked = !l.isChecked;
+      }
+      return l;
+    });
+    this.setState(
+      { [stateName]: newData },
+      this.props.onMultiChoiceChange(
+        stateName,
+        this.state[stateName].filter(l => l.isChecked).map(l => l.name)
+      )
+    );
+  }
+
+  resetFilter() {
+    this.props.handleChange({
+      target: { type: "checkbox", name: "favoritesOnly", checked: false }
+    });
+    this.props.handleChange({ target: { name: "nameFilter", value: "" } });
+    this.setState(
+      {
+        levelsFilter: this.state.levelsFilter.map(l => {
+          l.isChecked = false;
+          return l;
+        }),
+        circulosFilter: this.state.circulosFilter.map(c => {
+          c.isChecked = false;
+          return c;
+        })
+      },
+      () => {
+        this.props.onMultiChoiceChange("levelsFilter", []);
+        this.props.onMultiChoiceChange("circulosFilter", []);
+      }
+    );
+  }
+
+  render() {
+    const { nameFilter, favoritesOnly } = this.props;
+
+    return (
+      <Card>
+        <CardBody>
+          <CardTitle>
+            <h2>
+              Filtro
+              <Button
+                className={"float-right"}
+                onClick={() => this.resetFilter()}
+                color="primary"
+              >
+                Reset
+              </Button>
+            </h2>
+          </CardTitle>
+          <Form>
+            <FormGroup>
+              <Label for="nameFilter">Nome</Label>
+              <DebounceInput
+                element={Input}
+                value={nameFilter}
+                name="nameFilter"
+                id="nameFilter"
+                debounceTimeout={300}
+                onChange={e => this.props.handleChange(e)}
+              />
+            </FormGroup>
+            <hr />
+            <FormGroup>
+              <Label for="levelsFilter">Nível</Label>
+              <br />
+              {this.state.levelsFilter.map(n => (
+                <div className="form-check form-check-inline">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    checked={n.isChecked}
+                    id={`nivel_${n.name}`}
+                    onChange={() =>
+                      this.onChangeMultiChoice("levelsFilter", n.name)
+                    }
+                  />
+                  <label className="form-check-label" for={`nivel_${n.name}`}>
+                    {n.name}
+                  </label>
+                </div>
               ))}
-            </Input>
-          </FormGroup>
-          <FormGroup>
-            <Label for="circulosFilter">
-              Círculo{" "}
-              <small className="text-muted">
-                Use CTRL para selecionar mais de uma opção
-              </small>
-            </Label>
-            <Input
-              value={circulosFilter}
-              type="select"
-              name="circulosFilter"
-              id="circulosFilter"
-              multiple
-              onChange={e => props.handleChange(e)}
-            >
-              {circulosData.map((circulo, index) => (
-                <option value={circulo} key={index}>
-                  {circulo}
-                </option>
+            </FormGroup>
+            <hr />
+            <FormGroup>
+              <Label for="circulosFilter">Círculo</Label>
+              <br />
+              {this.state.circulosFilter.map(n => (
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    checked={n.isChecked}
+                    id={`nivel_${n.name}`}
+                    onChange={() =>
+                      this.onChangeMultiChoice("circulosFilter", n.name)
+                    }
+                  />
+                  <label className="form-check-label" for={`nivel_${n.name}`}>
+                    {n.name}
+                  </label>
+                </div>
               ))}
-            </Input>
-          </FormGroup>
-          <FormGroup check>
-            <Label check>
-              <Input
-                type="checkbox"
-                name="favoritesOnly"
-                id="favoritesOnly"
-                value={favoritesOnly}
-                onChange={e => props.handleChange(e)}
-              />{" "}
-              Somente Favoritos
-            </Label>
-          </FormGroup>
-        </Form>
-      </CardBody>
-    </Card>
-  );
+            </FormGroup>
+            <hr />
+            <FormGroup check>
+              <Label check>
+                <Input
+                  type="checkbox"
+                  name="favoritesOnly"
+                  id="favoritesOnly"
+                  value={favoritesOnly}
+                  onChange={e => this.props.handleChange(e)}
+                />{" "}
+                Somente Favoritos
+              </Label>
+            </FormGroup>
+          </Form>
+        </CardBody>
+      </Card>
+    );
+  }
 }
 
 export default Filtro;

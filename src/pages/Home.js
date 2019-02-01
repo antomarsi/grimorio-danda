@@ -13,18 +13,15 @@ class Home extends Component {
   };
 
   onSearchChange = e => {
-    if (e.target.selectedOptions) {
-      let options = e.target.options;
-      let value = [];
-      for (let i = 0; i < options.length; i++) {
-        options[i].selected && value.push(options[i].value);
-      }
-      this.setState({ [e.target.name]: value });
-    } else if (e.target.type === "checkbox") {
+    if (e.target.type === "checkbox") {
       this.setState({ [e.target.name]: e.target.checked });
     } else {
       this.setState({ [e.target.name]: e.target.value });
     }
+  };
+
+  onMultiChoiceChange = (name, values) => {
+    this.setState({ [name]: values });
   };
 
   render() {
@@ -40,8 +37,7 @@ class Home extends Component {
         <Row>
           <Col xs="12" md="6">
             <Filtro
-              levelsFilter={levelsFilter}
-              circulosFilter={circulosFilter}
+              onMultiChoiceChange={this.onMultiChoiceChange}
               nameFilter={nameFilter}
               handleChange={this.onSearchChange}
               favoritesOnly={favoritesOnly}
