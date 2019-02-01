@@ -1,16 +1,16 @@
 {
-  "main.css": "/grimorio-danda/static/css/main.a150e918.chunk.css",
-  "main.js": "/grimorio-danda/static/js/main.c0f9f0af.chunk.js",
-  "main.js.map": "/grimorio-danda/static/js/main.c0f9f0af.chunk.js.map",
+  "main.css": "/grimorio-danda/static/css/main.83162855.chunk.css",
+  "main.js": "/grimorio-danda/static/js/main.32b343db.chunk.js",
+  "main.js.map": "/grimorio-danda/static/js/main.32b343db.chunk.js.map",
   "static/css/1.93920531.chunk.css": "/grimorio-danda/static/css/1.93920531.chunk.css",
   "static/js/1.aee4dac3.chunk.js": "/grimorio-danda/static/js/1.aee4dac3.chunk.js",
   "static/js/1.aee4dac3.chunk.js.map": "/grimorio-danda/static/js/1.aee4dac3.chunk.js.map",
   "runtime~main.js": "/grimorio-danda/static/js/runtime~main.3454856a.js",
   "runtime~main.js.map": "/grimorio-danda/static/js/runtime~main.3454856a.js.map",
-  "static/media/rpg-awesome.min.css": "/grimorio-danda/static/media/rpgawesome-webfont.e31a701a.woff",
-  "static/css/main.a150e918.chunk.css.map": "/grimorio-danda/static/css/main.a150e918.chunk.css.map",
+  "static/media/rpg-awesome.min.css": "/grimorio-danda/static/media/rpgawesome-webfont.bc543967.ttf",
+  "static/css/main.83162855.chunk.css.map": "/grimorio-danda/static/css/main.83162855.chunk.css.map",
   "static/css/1.93920531.chunk.css.map": "/grimorio-danda/static/css/1.93920531.chunk.css.map",
   "index.html": "/grimorio-danda/index.html",
-  "precache-manifest.bf1ed884779eb76054e1397ef4af5218.js": "/grimorio-danda/precache-manifest.bf1ed884779eb76054e1397ef4af5218.js",
+  "precache-manifest.62b754b3a7c077ae1108a785b98479ce.js": "/grimorio-danda/precache-manifest.62b754b3a7c077ae1108a785b98479ce.js",
   "service-worker.js": "/grimorio-danda/service-worker.js"
 }
