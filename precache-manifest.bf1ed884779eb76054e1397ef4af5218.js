@@ -20,23 +20,23 @@ self.__precacheManifest = [
     "url": "/grimorio-danda/static/js/runtime~main.3454856a.js"
   },
   {
-    "revision": "29f1e33e5373de864a3c",
-    "url": "/grimorio-danda/static/js/main.29f1e33e.chunk.js"
+    "revision": "c0f9f0afedf241d707df",
+    "url": "/grimorio-danda/static/js/main.c0f9f0af.chunk.js"
   },
   {
-    "revision": "24a8d742372f8b13d5b0",
-    "url": "/grimorio-danda/static/js/1.24a8d742.chunk.js"
+    "revision": "aee4dac35e35d6b73bc2",
+    "url": "/grimorio-danda/static/js/1.aee4dac3.chunk.js"
   },
   {
-    "revision": "29f1e33e5373de864a3c",
+    "revision": "c0f9f0afedf241d707df",
     "url": "/grimorio-danda/static/css/main.a150e918.chunk.css"
   },
   {
-    "revision": "24a8d742372f8b13d5b0",
+    "revision": "aee4dac35e35d6b73bc2",
     "url": "/grimorio-danda/static/css/1.93920531.chunk.css"
   },
   {
-    "revision": "db52c6cf60036f97ec551ad1b580732e",
+    "revision": "f027e7c339899bbc20ae5d2d3ed4a223",
     "url": "/grimorio-danda/index.html"
   }
 ];
