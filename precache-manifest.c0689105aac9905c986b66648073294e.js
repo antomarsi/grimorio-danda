@@ -16,27 +16,27 @@ self.__precacheManifest = [
     "url": "/grimorio-danda/static/media/rpgawesome-webfont.bc543967.ttf"
   },
   {
-    "revision": "3454856a5ccbe1ec4c42",
-    "url": "/grimorio-danda/static/js/runtime~main.3454856a.js"
+    "revision": "e8060f01cb05fa8bc71c",
+    "url": "/grimorio-danda/static/js/runtime~main.e20dbadc.js"
   },
   {
-    "revision": "32b343db34a65ba583f3",
-    "url": "/grimorio-danda/static/js/main.32b343db.chunk.js"
+    "revision": "dbb20eb5af60cd257805",
+    "url": "/grimorio-danda/static/js/main.28e2b6b5.chunk.js"
   },
   {
-    "revision": "aee4dac35e35d6b73bc2",
-    "url": "/grimorio-danda/static/js/1.aee4dac3.chunk.js"
+    "revision": "8fda3279c3e988e662a7",
+    "url": "/grimorio-danda/static/js/2.538de939.chunk.js"
   },
   {
-    "revision": "32b343db34a65ba583f3",
-    "url": "/grimorio-danda/static/css/main.83162855.chunk.css"
+    "revision": "dbb20eb5af60cd257805",
+    "url": "/grimorio-danda/static/css/main.2cc39dc5.chunk.css"
   },
   {
-    "revision": "aee4dac35e35d6b73bc2",
-    "url": "/grimorio-danda/static/css/1.93920531.chunk.css"
+    "revision": "8fda3279c3e988e662a7",
+    "url": "/grimorio-danda/static/css/2.88bafe6c.chunk.css"
   },
   {
-    "revision": "18231ae1aa0afcf44db71524a7302b59",
+    "revision": "918d1a2cfca300f144a5b3c9427d2130",
     "url": "/grimorio-danda/index.html"
   }
 ];
