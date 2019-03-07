@@ -10,6 +10,7 @@ import {
   Button
 } from "reactstrap";
 import { DebounceInput } from "react-debounce-input";
+import './Filtro.css';
 
 class Filtro extends Component {
   state = {
@@ -77,7 +78,7 @@ class Filtro extends Component {
     const { nameFilter, favoritesOnly } = this.props;
 
     return (
-      <Card>
+      <Card className="filtro">
         <CardBody>
           <CardTitle>
             <h2>

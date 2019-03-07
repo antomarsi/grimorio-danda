@@ -68,7 +68,15 @@ class App extends Component {
             <Route
               exact
               path="/:magicId(\d+)/*"
-              render={props => <MagiaInfo {...props} listaMagia={magias} />}
+              render={props => (
+                <MagiaInfo
+                  {...props}
+                  favorites={favorites}
+                  listaMagia={magias}
+                  addToFav={id => this.addToFav(id)}
+                  removeFav={id => this.removeFav(id)}
+                />
+              )}
             />
             <Route component={NotFound} />
           </Switch>

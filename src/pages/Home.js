@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Filtro from "../components/Filtro";
 import { Container, Row, Col } from "reactstrap";
 import MagiaList from "../components/MagiaList";
+import PropTypes from 'prop-types';
 
 class Home extends Component {
   // Filtros deNome, niveis (círculo/nivel),
@@ -31,7 +32,8 @@ class Home extends Component {
       circulosFilter,
       favoritesOnly
     } = this.state;
-    const { listaMagia, favorites } = this.props;
+
+    const { listaMagia, favorites, addToFav, removeFav } = this.props;
     return (
       <Container>
         <Row>
@@ -51,14 +53,19 @@ class Home extends Component {
               favoritesOnly={favoritesOnly}
               listaMagia={listaMagia}
               favorites={favorites}
-              addToFav={this.props.addToFav}
-              removeFav={this.props.removeFav}
+              addToFav={addToFav}
+              removeFav={removeFav}
             />
           </Col>
         </Row>
       </Container>
     );
   }
+}
+
+Home.propTypes = {
+  listaMagia: PropTypes.array.isRequired,
+  favorites: PropTypes.array.isRequired
 }
 
 export default Home;

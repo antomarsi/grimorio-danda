@@ -5,6 +5,7 @@ import slugify from "slugify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as FullStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as EmptyStar } from "@fortawesome/free-regular-svg-icons";
+import "./MagiaList.css";
 
 class MagiaList extends Component {
   toggleFav(isFav, magiaId) {
@@ -27,7 +28,7 @@ class MagiaList extends Component {
               icon={isFav ? FullStar : EmptyStar}
               size="lg"
               onClick={() => this.toggleFav(isFav, magia.id)}
-            />{' '}
+            />{" "}
             <Link
               to={`${magia.id}/${slugify(magia.nome, { replacement: "-" })}`}
             >
@@ -58,41 +59,40 @@ class MagiaList extends Component {
     } = this.props;
     const magias = listaMagia
       .sort((a, b) => a.niveis[0].nivel - b.niveis[0].nivel)
-      .filter(magia => {
-        if (
-          nameFilter.length &&
-          !magia.nome.toLowerCase().includes(nameFilter.toLowerCase())
-        ) {
-          return false;
-        } else if (
-          levelsFilter.length &&
-          !levelsFilter.some(x =>
+      .filter(
+        magia =>
+          !nameFilter.length ||
+          magia.nome.toLowerCase().includes(nameFilter.toLowerCase())
+      )
+      .filter(
+        magia =>
+          !levelsFilter.length ||
+          levelsFilter.some(x =>
             magia.niveis.some(y => y.nivel === Number.parseInt(x))
           )
-        ) {
-          return false;
-        } else if (
-          circulosFilter.length &&
-          !circulosFilter.some(x =>
+      )
+      .filter(
+        magia =>
+          !circulosFilter.length ||
+          circulosFilter.some(x =>
             magia.niveis.some(y => y.circulo.toLowerCase() === x.toLowerCase())
           )
-        ) {
-          return false;
-        } else if (favoritesOnly === true && !favorites.includes(magia.id)) {
-          return false;
-        } else {
-          return true;
-        }
-      });
-
+      )
+      .filter(magia => !favoritesOnly || favorites.includes(magia.id));
     return (
       <div>
-        { (nameFilter.length || levelsFilter.length || circulosFilter.length || favoritesOnly) && magias.length > 0 && (
-          <h4>{magias.length} resultados encontrados</h4>
-        )}
-        <ListGroup>
-          { magias.length > 0 && magias.map(magia => this.renderMagia(magia))}
-          { magias.length === 0 && (<ListGroupItem><h3 className="text-center">Nenhuma magia encontrada!</h3></ListGroupItem>)}
+        {(nameFilter.length ||
+          levelsFilter.length ||
+          circulosFilter.length ||
+          favoritesOnly) &&
+          magias.length > 0 && <h4>{magias.length} resultados encontrados</h4>}
+        <ListGroup className="magia-list border border-secundary rounded">
+          {magias.length > 0 && magias.map(magia => this.renderMagia(magia))}
+          {magias.length === 0 && (
+            <ListGroupItem>
+              <h3 className="text-center">Nenhuma magia encontrada!</h3>
+            </ListGroupItem>
+          )}
         </ListGroup>
       </div>
     );

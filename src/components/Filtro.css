@@ -1,0 +1,7 @@
+@media (max-width: 576px) {
+  .filtro {
+    height: 44.5vh;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+  }
+}
