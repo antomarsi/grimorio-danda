@@ -106,7 +106,7 @@ class Filtro extends Component {
             </FormGroup>
             <hr />
             <FormGroup>
-              <Label for="levelsFilter">Nível</Label>
+              <Label for="levelsFilter">Grau:</Label>
               <br />
               {this.state.levelsFilter.map(n => (
                 <div className="form-check form-check-inline">
