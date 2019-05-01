@@ -1,65 +1,44 @@
-# Grimorio do Dand'a
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Esse projeto é um Grimório online para as magias do Dand'a RPG.
+## Available Scripts
 
-Você pode acessar a versão final aqui: https://antomarsi.github.io/grimorio-danda/
+In the project directory, you can run:
 
-## Getting Started
+### `npm start`
 
-Se você já sabe como funciona um aplicativo React, então você já sabe como funciona, mas caso contrário, siga as instruções abaixo.
-Para poder alterar as informações das magias, devesse alterar o arquivo `src/data/magias.json`.
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### Prerequisites
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-Como é um projeto em node e react, você só precisa do [Node.js](https://nodejs.org) e o npm (que é incluso ao nodejs).
+### `npm test`
 
-```
-node +8
-npm +6
-```
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### Installing
+### `npm run build`
 
-Após clonar o projeto, entre na pasta do projeto e rode o seguinte comando para instalar todos os pacotes necessários para o projeto
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-```
-$ npm install
-```
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-## Running in Development (locally)
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-Para rodar o projeto, somente rode o comando abaixo:
-```
-$ npm start
-```
-Depois de compilar, abrirá uma página em seu navegador para o caminho `http://localhost:3000`, qualquer alteração ao seu projeto irá atualizar a página.
+### `npm run eject`
 
-### Testing
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-Nenhum teste foi implementado.
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-## Building
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-Para buildar o projeto, basta somente rodar o comando `build` do npm, assim ele irá criar uma pasta `build` na raiz do projeto. O build é rodado automaticamente se for feito um `deploy` do projeto.
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-```
-$ npm run build
-```
+## Learn More
 
-## Deployment
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-Para publicar para seu [GithubPages](https://pages.github.com/), certifique que o está habilitado em seu projeto, e que ele utilizará a branch `gh-pages`.
-Utilize o comando abaixo para enviar para o seu [GithubPages](https://pages.github.com/), o `build` do projeto ocorrerá antes da publicação:
-
-```
-$ npm run deploy
-```
-
-## Authors
-
-* **Antônio Marco da Silva** - *Basicamente tudo* - [antomarsi](https://github.com/antomarsi)
-* **Diogo "Stone" da Silva** - *Geração das informações para o JSON* - [DiogoStone](https://github.com/DiogoStone)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+To learn React, check out the [React documentation](https://reactjs.org/).
