@@ -30,9 +30,9 @@ export interface Magic {
 }
 
 export enum MagicActionTypes {
-  FETCH_REQUEST = "@magics/FETCH_REQUEST",
-  FETCH_SUCCESS = "@magics/FETCH_SUCCESS",
-  FETCH_ERROR = "@magics/FETCH_ERROR"
+  FETCH_REQUEST = "@@magics/FETCH_REQUEST",
+  FETCH_SUCCESS = "@@magics/FETCH_SUCCESS",
+  FETCH_ERROR = "@@magics/FETCH_ERROR"
 }
 
 export interface MagicState {

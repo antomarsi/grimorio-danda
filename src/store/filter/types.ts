@@ -1,8 +1,8 @@
 
 export enum FilterActionTypes {
-  GET_FILTER = "@filter/GET_FILTER",
-  UPDATE_FILTER = "@filter/UPDATE_FILTER",
-  RESET_FILTER = "@filter/RESET_FILTER",
+  GET_FILTER = "@@filter/GET_FILTER",
+  UPDATE_FILTER = "@@filter/UPDATE_FILTER",
+  RESET_FILTER = "@@filter/RESET_FILTER",
 }
 
 export interface FilterState {
