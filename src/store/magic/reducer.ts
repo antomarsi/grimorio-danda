@@ -2,7 +2,9 @@ import { MagicState, MagicActionTypes } from "./types";
 import { Reducer } from "redux";
 
 const initialState: MagicState = {
-  data: [],
+  magics: [],
+  magicCircle: [],
+  descriptors: [],
   errors: undefined,
   loading: false
 };
@@ -13,7 +15,13 @@ const reducer: Reducer<MagicState> = (state = initialState, action) => {
       return { ...state, loading: true };
     }
     case MagicActionTypes.FETCH_SUCCESS: {
-      return { ...state, loading: false, data: action.payload };
+      return {
+        ...state,
+        loading: false,
+        magics: action.payload.magics,
+        descriptors: action.payload.descriptors,
+        magicCircle: action.payload.magicCircle
+      };
     }
     case MagicActionTypes.FETCH_ERROR: {
       return { ...state, loading: false, errors: action.payload };

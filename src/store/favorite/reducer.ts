@@ -26,6 +26,16 @@ export const reducer: Reducer<FavoriteState> = (
         favorites: state.favorites.filter(fav => fav !== action.payload)
       };
     }
+    case FavoriteActionTypes.TOGGLE_FAVORITE: {
+      if (state.favorites.includes(action.payload)) {
+        return {
+          ...state,
+          favorites: state.favorites.filter(fav => fav !== action.payload)
+        };
+      } else {
+        return { ...state, favorites: [...state.favorites, action.payload] };
+      }
+    }
     default: {
       return state;
     }

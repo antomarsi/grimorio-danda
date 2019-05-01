@@ -3,45 +3,30 @@ import { connect } from "react-redux";
 import { Magic } from "../../store/magic/types";
 import MagicCard from "./MagicCard";
 import { List } from "antd";
+import { AppState } from "../../store";
+import { getVisibleMagic } from "../../store/magic/selectores";
 
-const magicArrayTest: Magic[] = [{
-  id: 1,
-  name: "Magic potatoe",
-  levels: [],
-  descriptorIds: [],
-  duration: "Duration",
-  executionTime: "Imediato",
-  range: "perto",
-  resistenceTest: "Nenhum",
-  description: "###é uma batata... só que mágica",
-  tags: []
-}, {
-  id: 2,
-  name: "Fire Ball",
-  levels: [],
-  descriptorIds: [],
-  duration: "Duration",
-  executionTime: "Imediato",
-  range: "perto",
-  resistenceTest: "Nenhum",
-  description: "###basic Fireball",
-  tags: []
-}];
+interface StateProps {
+  magics: Magic[];
+  loading: boolean;
+}
 
-const magicFavs = [1];
+type Props = StateProps;
 
-interface OwnProps {}
-
-type Props = OwnProps;
-
-const MagicList: React.FC<Props> = (props: Props) => (
+const MagicList: React.FC<Props> = ({ magics, loading }: Props) => (
   <div>
     <List
       itemLayout="horizontal"
-      dataSource={magicArrayTest}
-      renderItem={(magicItem: Magic) => <MagicCard magic={magicItem} isFav={magicFavs.includes(magicItem.id)} />}
+      dataSource={magics}
+      loading={loading}
+      renderItem={(magicItem: Magic) => <MagicCard magic={magicItem} />}
     />
   </div>
 );
 
-export default connect()(MagicList);
+const mapStateToProps = (state: AppState) => ({
+  loading: state.magic.loading,
+  magics: getVisibleMagic(state)
+});
+
+export default connect(mapStateToProps)(MagicList);

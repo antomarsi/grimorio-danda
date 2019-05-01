@@ -9,3 +9,6 @@ export const addFavorite = (id: number) =>
 
 export const deleteFavorite = (id: number) =>
   action(FavoriteActionTypes.DELETE_FAVORITE, id);
+
+export const toggleFavorite = (id: number) =>
+  action(FavoriteActionTypes.TOGGLE_FAVORITE, id);

@@ -1,4 +1,4 @@
-export interface Circle {
+export interface MagicCircle {
   id: number;
   name: string;
   description?: string;
@@ -13,13 +13,11 @@ export interface Descriptor {
 export interface Magic {
   id: number;
   name: string;
-  levels: Array<{ circleId: number; level: number }>;
-  descriptorIds: Array<number>;
-
+  circles: Array<{ id: number; tier: number, descriptor: Array<number> }>;
   executionTime: string;
   range: string;
   duration: string;
-  resistenceTest: string;
+  resistanceTest: string;
   description: string;
 
   target?: string;
@@ -28,7 +26,7 @@ export interface Magic {
   materialComponent?: string;
   xpCost?: string;
   icon?: string;
-  tags: string[];
+  tags?: string[];
 }
 
 export enum MagicActionTypes {
@@ -39,6 +37,8 @@ export enum MagicActionTypes {
 
 export interface MagicState {
   readonly loading: boolean;
-  readonly data: Magic[];
+  readonly magics: Magic[];
+  readonly descriptors: Descriptor[];
+  readonly magicCircle: MagicCircle[];
   readonly errors?: string;
 }
