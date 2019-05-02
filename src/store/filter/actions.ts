@@ -7,5 +7,5 @@ export const getFilters = () =>
 export const updateFilter = (filter: FilterState) =>
   action(FilterActionTypes.UPDATE_FILTER, filter);
 
-export const toggleFilter = () =>
+export const resetFilter = () =>
   action(FilterActionTypes.RESET_FILTER);

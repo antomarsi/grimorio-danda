@@ -30,7 +30,7 @@ class Navbar extends Component<RouteComponentProps<{}>> {
         </Link>
         <NavMenu theme="dark" mode="horizontal">
           <Menu.Item key="github">
-            <a href="https://github.com/antomarsi/grimorio-danda-v2">
+            <a href="https://github.com/antomarsi/grimorio-danda" target="_blank" rel="noopener noreferrer">
               <Icon style={{ fontSize: "24px" }} type="github" theme="filled" />
             </a>
           </Menu.Item>

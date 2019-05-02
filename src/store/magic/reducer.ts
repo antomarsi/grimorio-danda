@@ -17,10 +17,10 @@ const reducer: Reducer<MagicState> = (state = initialState, action) => {
     case MagicActionTypes.FETCH_SUCCESS: {
       return {
         ...state,
-        loading: false,
         magics: action.payload.magics,
         descriptors: action.payload.descriptors,
-        magicCircle: action.payload.magicCircle
+        magicCircle: action.payload.magicCircle,
+        loading: false,
       };
     }
     case MagicActionTypes.FETCH_ERROR: {

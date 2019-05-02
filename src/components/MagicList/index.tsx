@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Magic } from "../../store/magic/types";
-import MagicCard from "./MagicCard";
+import MagicCard from "../MagicCard";
 import { List } from "antd";
 import { AppState } from "../../store";
 import { getVisibleMagic } from "../../store/magic/selectores";

@@ -1,6 +1,6 @@
 {
-  "name": "grimorio-danda-v2",
-  "homepage": "https://antomarsi.github.io/grimorio-danda-v2/",
+  "name": "grimorio-danda",
+  "homepage": "https://antomarsi.github.io/grimorio-danda/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

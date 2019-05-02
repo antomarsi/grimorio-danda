@@ -26,4 +26,4 @@ export const reducer: Reducer<FilterState> = (state = initialState, action) => {
   }
 };
 
-export { reducer as filterReducer };
+export { reducer as filterReducer, initialState as filterInitialState };

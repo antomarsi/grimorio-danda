@@ -1,6 +1,7 @@
 export interface MagicCircle {
   id: number;
   name: string;
+  descriptors: number[];
   description?: string;
 }
 

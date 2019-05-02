@@ -42,9 +42,15 @@ export const getVisibleMagic = createSelector(
         return false;
       } else if (
         (filters.nameSearch.length &&
-          magic.name.indexOf(filters.nameSearch) > -1) ||
-        (magic.tags && magic.tags.indexOf(filters.nameSearch) > -1)
+          !magic.name
+            .toLowerCase()
+            .includes(filters.nameSearch.toLowerCase())) ||
+        (magic.tags &&
+          !magic.tags
+            .map(t => t.toLowerCase())
+            .includes(filters.nameSearch.toLowerCase()))
       ) {
+        return false;
       }
       return true;
     });

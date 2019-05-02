@@ -6,10 +6,10 @@ import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import { toggleFavorite } from "../../store/favorite/actions";
 import { AppState } from "../../store";
-import { isFavorited } from "../../store/favorite/selectors";
+import { getFavorites } from "../../store/favorite/selectors";
 
 interface StateProps {
-  isFavorited: () => boolean;
+  favorites: Array<number>;
 }
 
 interface DispatchProps {
@@ -29,30 +29,37 @@ const FavIcon = styled(Icon)`
 
 type Props = OwnProps & DispatchProps & StateProps;
 
-const MagicCard: React.FC<Props> = ({ magic, toggleFavorite }: Props) => (
-  <Card
-    title={magic.name}
-    bordered={false}
-    extra={
-      <Button
-        shape="circle"
-        type="dashed"
-        onClick={() => toggleFavorite(magic.id)}
-      >
-        <FavIcon
-          type="star"
-          theme={isFavorited ? "filled" : "outlined"}
-          className={isFavorited ? "favorited" : ""}
-        />
-      </Button>
-    }
-  >
-    {magic.description}+{isFavorited && "FAVORITED"}
-  </Card>
-);
+const MagicCard: React.FC<Props> = ({
+  magic,
+  toggleFavorite,
+  favorites
+}: Props) => {
+  const isFavorited = favorites.indexOf(magic.id) > -1;
+  return (
+    <Card
+      title={magic.name}
+      bordered={false}
+      extra={
+        <Button
+          shape="circle"
+          type="dashed"
+          onClick={() => toggleFavorite(magic.id)}
+        >
+          <FavIcon
+            type="star"
+            theme={isFavorited ? "filled" : "outlined"}
+            className={isFavorited ? "favorited" : ""}
+          />
+        </Button>
+      }
+    >
+      {magic.description}
+    </Card>
+  );
+};
 
 const mapStateToProps = (state: AppState, props: OwnProps) => ({
-  isFavorited: () => isFavorited(state, props.magic.id)
+  favorites: getFavorites(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
