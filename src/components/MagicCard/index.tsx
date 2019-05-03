@@ -51,10 +51,13 @@ const MagicCard: React.FC<Props> = ({
   const [open, setOpen] = React.useState(false);
 
   const isFavorited = favorites.indexOf(magic.id) > -1;
-  const circles = magic.circles.map(c => ({
-    circle: magicCircles.filter(mc => mc.id === c.id)[0],
-    tier: c.tier
-  }));
+  const circles = magic.circles.map(c => {
+    if (!c) return null;
+    return {
+      circle: magicCircles.filter(mc => mc.id === c.id)[0],
+      tier: c.tier
+    };
+  });
   const descrip = magic.circles
     .map(c => c.descriptor.map(d => descriptors.filter(mc => mc.id === d)[0]))
     .flat()
@@ -78,7 +81,7 @@ const MagicCard: React.FC<Props> = ({
           <Col>
             <Typography.Text type="secondary">
               {`${circles
-                .map(c => (!c.circle ? null : `${c.circle.name} ${c.tier}`))
+                .map(c => (!c || !c.circle ? null : `${c.circle.name} ${c.tier}`))
                 .join(", ")} (${descrip
                 .map(d => (!d ? null : d.name))
                 .join(", ")})`}
