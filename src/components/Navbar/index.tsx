@@ -49,7 +49,7 @@ const Navbar: React.FC<Props> = (props: Props) => {
         <Menu.SubMenu key="magicCircles" title={"Magic circles"}>
           {magicCircles &&
             magicCircles.map((mc: MagicCircle) => (
-              <Menu.Item
+              <Menu.Item key={mc.id}
                 onClick={() => {
                   setSelectedInfo(mc);
                   setVisible(true);
@@ -62,7 +62,7 @@ const Navbar: React.FC<Props> = (props: Props) => {
         <Menu.SubMenu key="descriptors" title={"Descriptors"}>
           {descriptors &&
             descriptors.map((d: Descriptor) => (
-              <Menu.Item
+              <Menu.Item key={d.id}
                 onClick={() => {
                   setSelectedInfo(d);
                   setVisible(true);
