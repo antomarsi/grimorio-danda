@@ -67,6 +67,11 @@ const MagicCard: React.FC<Props> = ({
           <Col>
             <TextNoSelectable onClick={() => setOpen(!open)}>
               <Icon type={open ? "up" : "down"} />{" "}
+              {magic.icon && (
+                <div>
+                  <Icon type={magic.icon} />{" "}
+                </div>
+              )}
               <Typography.Text>{magic.name}</Typography.Text>
             </TextNoSelectable>
           </Col>
@@ -101,7 +106,58 @@ const MagicCard: React.FC<Props> = ({
       }
     >
       <div style={{ whiteSpace: "pre-wrap" }}>
-        {open && <ReactMarkdown source={magic.description} />}
+        {open && (
+          <div>
+            <p>
+              <Typography.Text strong>Execution Time: </Typography.Text>
+              <Typography.Text>{magic.executionTime}</Typography.Text>
+            </p>
+            <p>
+              <Typography.Text strong>Range: </Typography.Text>
+              <Typography.Text>{magic.range}</Typography.Text>
+            </p>
+            <p>
+              <Typography.Text strong>Duration: </Typography.Text>
+              <Typography.Text>{magic.duration}</Typography.Text>
+            </p>
+            <p>
+              <Typography.Text strong>Resistance Test: </Typography.Text>
+              <Typography.Text>{magic.resistanceTest}</Typography.Text>
+            </p>
+            {magic.target && (
+              <p>
+                <Typography.Text strong>Target: </Typography.Text>
+                <Typography.Text>{magic.target}</Typography.Text>
+              </p>
+            )}
+            {magic.area && (
+              <p>
+                <Typography.Text strong>Area: </Typography.Text>
+                <Typography.Text>{magic.area}</Typography.Text>
+              </p>
+            )}
+            {magic.effect && (
+              <p>
+                <Typography.Text strong>Effect: </Typography.Text>
+                <Typography.Text>{magic.effect}</Typography.Text>
+              </p>
+            )}
+            {magic.materialComponent && (
+              <p>
+                <Typography.Text strong>Material Component: </Typography.Text>
+                <Typography.Text>{magic.materialComponent}</Typography.Text>
+              </p>
+            )}
+            {magic.xpCost && (
+              <p>
+                <Typography.Text strong>XP Cost: </Typography.Text>
+                <Typography.Text>{magic.xpCost}</Typography.Text>
+              </p>
+            )}
+
+            <ReactMarkdown source={magic.description} />
+          </div>
+        )}
       </div>
     </Card>
   );

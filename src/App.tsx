@@ -4,7 +4,7 @@ import "rpg-awesome/css/rpg-awesome.min.css";
 import Routes from "./routes/index";
 import { History } from "history";
 import { ConnectedRouter } from "connected-react-router";
-import { Layout } from "antd";
+import { Layout, BackTop, Icon } from "antd";
 import Navbar from "./components/Navbar";
 import { HashRouter } from "react-router-dom";
 import { fetchRequest } from "./store/magic/thunk";
@@ -34,11 +34,14 @@ class App extends Component<Props> {
         <HashRouter>
           <Layout className="layout">
             <Navbar />
-            <Content style={{ padding: "0 50px" }}>
+            <Content style={{ padding: "0 50px", marginTop: 80 }}>
               <div style={{ background: "#fff", padding: 24, minHeight: 280 }}>
                 <Routes />
               </div>
             </Content>
+            <BackTop>
+              <div className="ant-back-top-inner"><Icon type="arrow-up"/></div>
+            </BackTop>
             <Footer style={{ textAlign: "center" }}>
               Created by{" "}
               <a
