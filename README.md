@@ -1,65 +1,52 @@
+
+  
+
 # Grimorio do Dand'a
-
-Esse projeto é um Grimório online para as magias do Dand'a RPG.
-
-Você pode acessar a versão final aqui: https://antomarsi.github.io/grimorio-danda/
-
+This project is a Grimore Online for the list of spells of the RPG Dand'a.
+You can view a online version here: https://antomarsi.github.io/grimorio-danda/
 ## Getting Started
-
-Se você já sabe como funciona um aplicativo React, então você já sabe como funciona, mas caso contrário, siga as instruções abaixo.
-Para poder alterar as informações das magias, devesse alterar o arquivo `src/data/magias.json`.
-
+If you know how to make a ReactJS, so you know how to start, if not, follow the instructions below:
+To change the DATA of the spells, just edit the file located at `public/data/magics.json`.
 ### Prerequisites
-
-Como é um projeto em node e react, você só precisa do [Node.js](https://nodejs.org) e o npm (que é incluso ao nodejs).
-
+The project is a ReactJS, so you need to install npm ([Node.js](https://nodejs.org)). Optionally, you can use [Yarn](https://yarnpkg.com).
 ```
 node +8
 npm +6
+yarn +1.15
 ```
-
 ### Installing
-
-Após clonar o projeto, entre na pasta do projeto e rode o seguinte comando para instalar todos os pacotes necessários para o projeto
-
+After cloning or downloading the project, go to the project folder and install all dependencies.
 ```
 $ npm install
+OR
+$ yarn
 ```
-
 ## Running in Development (locally)
-
-Para rodar o projeto, somente rode o comando abaixo:
+Run the command below to use the `react-script start`, or you can change to use another server, your choose.
 ```
 $ npm start
+OR
+$ yarn start
 ```
-Depois de compilar, abrirá uma página em seu navegador para o caminho `http://localhost:3000`, qualquer alteração ao seu projeto irá atualizar a página.
-
 ### Testing
-
-Nenhum teste foi implementado.
-
+No implementation. );
 ## Building
-
-Para buildar o projeto, basta somente rodar o comando `build` do npm, assim ele irá criar uma pasta `build` na raiz do projeto. O build é rodado automaticamente se for feito um `deploy` do projeto.
-
+To build the project, just run the command `build`, after the build, a folder called `build` in the root of your project. PS: The build command always runs when deploying, read below.
 ```
 $ npm run build
+OR
+$ yarn build
 ```
-
 ## Deployment
-
-Para publicar para seu [GithubPages](https://pages.github.com/), certifique que o está habilitado em seu projeto, e que ele utilizará a branch `gh-pages`.
-Utilize o comando abaixo para enviar para o seu [GithubPages](https://pages.github.com/), o `build` do projeto ocorrerá antes da publicação:
-
+To publish to your [GithubPages](https://pages.github.com/), check if is enabled in your project and it will use the branch `gh-pages`.
+Run the command below to send the `build` folder to your [GithubPages](https://pages.github.com/), the project will build before your deploy:
 ```
 $ npm run deploy
+OR
+$ yarn deploy
 ```
-
 ## Authors
-
-* **Antônio Marco da Silva** - *Basicamente tudo* - [antomarsi](https://github.com/antomarsi)
-* **Diogo "Stone" da Silva** - *Geração das informações para o JSON* - [DiogoStone](https://github.com/DiogoStone)
-
+*  **Antônio Marco da Silva** - *Basically Everything* - [antomarsi](https://github.com/antomarsi)
+*  **Diogo "Stone" da Silva** - *Geração das informações para o JSON* - [DiogoStone](https://github.com/DiogoStone)
 ## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.

@@ -1,16 +1,48 @@
 {
   "name": "grimorio-danda",
+  "homepage": "https://antomarsi.github.io/grimorio-danda/",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://antomarsi.github.io/grimorio-danda/",
   "dependencies": {
-    "prop-types": "^15.7.2",
-    "react": "^16.7.0",
-    "react-debounce-input": "^3.2.0",
-    "react-dom": "^16.7.0",
-    "react-router-dom": "^4.3.1",
-    "reactstrap": "^7.1.0",
-    "slugify": "^1.3.4"
+    "@types/styled-components": "^4.1.14",
+    "antd": "^3.16.5",
+    "axios": "^0.18.0",
+    "connected-react-router": "^6.4.0",
+    "formik": "^1.5.2",
+    "history": "^4.9.0",
+    "moment": "^2.24.0",
+    "node-sass": "^4.12.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-markdown": "^4.0.8",
+    "react-redux": "^7.0.2",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "3.0.0",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^1.0.2",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
+    "rpg-awesome": "^0.2.0",
+    "styled-components": "^4.2.0",
+    "typesafe-actions": "^4.2.0",
+    "typescript": "3.4.5",
+    "yup": "^0.27.0"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/history": "^4.7.2",
+    "@types/jest": "24.0.12",
+    "@types/node": "11.13.8",
+    "@types/react": "16.8.15",
+    "@types/react-dom": "16.8.4",
+    "@types/react-redux": "^7.0.8",
+    "@types/react-router-dom": "^4.3.2",
+    "@types/redux-logger": "^3.0.7",
+    "@types/reselect": "^2.2.0",
+    "@types/yup": "^0.26.12",
+    "gh-pages": "^2.0.1",
+    "redux-devtools-extension": "^2.13.8"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -23,21 +55,16 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.7.0",
-    "@fortawesome/fontawesome-svg-core": "^1.2.13",
-    "@fortawesome/free-regular-svg-icons": "^5.7.0",
-    "@fortawesome/free-solid-svg-icons": "^5.7.0",
-    "@fortawesome/react-fontawesome": "^0.1.4",
-    "bootstrap": "^4.2.1",
-    "gh-pages": "^2.0.1",
-    "react-scripts": "^2.1.8",
-    "rpg-awesome": "^0.2.0"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
