@@ -4,9 +4,9 @@ import "rpg-awesome/css/rpg-awesome.min.css";
 import Routes from "./routes/index";
 import { History } from "history";
 import { ConnectedRouter } from "connected-react-router";
-import { Layout, Breadcrumb } from "antd";
+import { Layout } from "antd";
 import Navbar from "./components/Navbar";
-import { HashRouter, Link } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { fetchRequest } from "./store/magic/thunk";
 import { Dispatch, bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -35,18 +35,17 @@ class App extends Component<Props> {
           <Layout className="layout">
             <Navbar />
             <Content style={{ padding: "0 50px" }}>
-              <Breadcrumb style={{ margin: "16px 0" }}>
-                <Breadcrumb.Item>
-                  <Link to="/">Home</Link>
-                </Breadcrumb.Item>
-              </Breadcrumb>
               <div style={{ background: "#fff", padding: 24, minHeight: 280 }}>
                 <Routes />
               </div>
             </Content>
             <Footer style={{ textAlign: "center" }}>
               Created by{" "}
-              <a href="https://github.com/antomarsi" rel="noopener noreferrer" target="_blank">
+              <a
+                href="https://github.com/antomarsi"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
                 Antônio Marco da Silva
               </a>
             </Footer>

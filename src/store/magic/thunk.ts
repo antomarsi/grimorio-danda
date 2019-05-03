@@ -1,12 +1,12 @@
 import axios from "axios";
 import { Dispatch } from "redux";
-import { fetchSuccess, fetchError } from "./actions";
+import { fetchRequest as fetchRequestAction, fetchSuccess, fetchError } from "./actions";
 
 const apiUrl = "data/magics.json";
 
 export const fetchRequest = () => {
   return (dispatch: Dispatch) => {
-    console.log("Will try to fetch now");
+    dispatch(fetchRequestAction());
     return axios
       .get(apiUrl)
       .then(res => {
