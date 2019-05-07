@@ -26,13 +26,17 @@ const MagicList: React.FC<Props> = ({ magics, loading }: Props) => {
           <Icon type="loading" />
         </div>
       )}
-      {!loading && tiers.map((values, index) => values.length).flat()[0] === 0 && (
-        <div style={{ textAlign: "center", fontSize: 48 }}>
-          <Icon type="meh" />
-          <br />
-          <Typography.Title level={4}>No spell found!</Typography.Title>
-        </div>
-      )}
+      {!loading &&
+        tiers
+          .map((values, index) => values.length)
+          .flat()
+          .reduce((sum, current) => sum + current, 0) === 0 && (
+          <div style={{ textAlign: "center", fontSize: 48 }}>
+            <Icon type="meh" />
+            <br />
+            <Typography.Title level={4}>No spell found!</Typography.Title>
+          </div>
+        )}
       {!loading &&
         tiers.map((values: Magic[], index: number) => {
           if (!values.length) return false;
