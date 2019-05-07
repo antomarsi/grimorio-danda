@@ -1,10 +1,9 @@
 {
   "name": "grimorio-danda",
   "homepage": "https://antomarsi.github.io/grimorio-danda/",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
-    "@types/styled-components": "^4.1.14",
     "antd": "^3.16.5",
     "axios": "^0.18.0",
     "connected-react-router": "^6.4.0",
@@ -40,6 +39,7 @@
     "@types/react-router-dom": "^4.3.2",
     "@types/redux-logger": "^3.0.7",
     "@types/reselect": "^2.2.0",
+    "@types/styled-components": "^4.1.14",
     "@types/yup": "^0.26.12",
     "gh-pages": "^2.0.1",
     "redux-devtools-extension": "^2.13.8"
