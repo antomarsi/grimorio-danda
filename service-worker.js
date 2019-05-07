@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.0/workbox-sw.js");
 
 importScripts(
-  "/grimorio-danda/precache-manifest.a1220b27a11fa84e5400ba7360f6d17b.js"
+  "/grimorio-danda/precache-manifest.bed874dd4fcc57e92484c82bb0904ff2.js"
 );
 
 self.addEventListener('message', (event) => {
