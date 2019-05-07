@@ -1,7 +1,7 @@
 {
   "name": "grimorio-danda",
   "homepage": "https://antomarsi.github.io/grimorio-danda/",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "dependencies": {
     "antd": "^3.16.5",
