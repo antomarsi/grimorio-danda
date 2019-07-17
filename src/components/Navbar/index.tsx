@@ -3,7 +3,6 @@ import { Layout, Icon, Typography, Modal } from "antd";
 import { Menu } from "antd";
 import styled from "styled-components";
 import Title from "antd/lib/typography/Title";
-import { Link } from "react-router-dom";
 import { MagicCircle, Descriptor } from "../../store/ducks/magic/types";
 import ReactMarkdown from "react-markdown";
 import { useSelector } from "react-redux";
@@ -43,9 +42,7 @@ const Navbar: React.SFC = () => {
 
   return (
     <Header>
-      <Link to="/">
-        <LogoTitle level={1}>Grimório Dand'A</LogoTitle>
-      </Link>
+      <LogoTitle level={1}>Grimório Dand'A</LogoTitle>
       <NavMenu theme="dark" mode="horizontal">
         <Menu.SubMenu key="magicCircles" title={"Magic circles"}>
           {magicCircles &&
