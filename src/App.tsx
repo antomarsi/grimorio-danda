@@ -10,6 +10,7 @@ import { HashRouter } from "react-router-dom";
 import { fetchRequest } from "./store/magic/thunk";
 import { Dispatch, bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import Sidebar from "./components/Sidebar";
 const { Content, Footer } = Layout;
 
 interface AppProps {
@@ -34,14 +35,21 @@ class App extends Component<Props> {
         <HashRouter>
           <Layout className="layout">
             <Navbar />
-            <Content style={{ padding: "0 50px", marginTop: 80 }}>
-              <div style={{ background: "#fff", padding: 24, minHeight: 280 }}>
-                <Routes />
-              </div>
-            </Content>
-            <BackTop>
-              <div className="ant-back-top-inner"><Icon type="arrow-up"/></div>
-            </BackTop>
+            <Layout>
+              <Content style={{ padding: "0 50px", marginTop: 80 }}>
+                <div
+                  style={{ background: "#fff", padding: 24, minHeight: 280 }}
+                >
+                  <Routes />
+                </div>
+                <BackTop>
+                  <div className="ant-back-top-inner">
+                    <Icon type="arrow-up" />
+                  </div>
+                </BackTop>
+              </Content>
+              <Sidebar/>
+            </Layout>
             <Footer style={{ textAlign: "center" }}>
               Created by{" "}
               <a
