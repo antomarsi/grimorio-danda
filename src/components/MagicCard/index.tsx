@@ -1,19 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Icon, Button, Typography, Row, Col } from "antd";
-import { Magic, MagicCircle, Descriptor } from "../../store/magic/types";
+import { Magic, MagicCircle, Descriptor } from "../../store/ducks/magic/types";
 import styled from "styled-components";
-import { connect } from "react-redux";
-import { bindActionCreators, Dispatch } from "redux";
-import { toggleFavorite } from "../../store/favorite/actions";
-import { AppState } from "../../store";
-import { getFavorites } from "../../store/favorite/selectors";
+import { useSelector, useDispatch } from "react-redux";
 import ReactMarkdown from "react-markdown";
+import { ApplicationState } from "../../store";
+import {
+  addFavorite,
+  deleteFavorite
+} from "../../store/ducks/favorite/actions";
 
 const FavIcon = styled(Icon)`
   font-size: 24px;
   &.favorited {
     color: #faad14 !important;
-  }
+  }import { ApplicationState } from '../../store/index';
+
 `;
 
 const TextNoSelectable = styled.a`
@@ -24,41 +26,51 @@ const TextNoSelectable = styled.a`
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;
 `;
-
-interface StateProps {
-  favorites: Array<number>;
-  magicCircles: MagicCircle[];
-  descriptors: Descriptor[];
-}
-
-interface DispatchProps {
-  toggleFavorite: (id: number) => void;
-}
-
 interface OwnProps {
   magic: Magic;
 }
 
-type Props = OwnProps & DispatchProps & StateProps;
+type Props = OwnProps;
 
-const MagicCard: React.FC<Props> = ({
-  magic,
-  magicCircles,
-  descriptors,
-  toggleFavorite,
-  favorites
-}: Props) => {
+const MagicCard: React.SFC<Props> = ({ magic }: Props) => {
   const [open, setOpen] = React.useState(false);
+  const favorites = useSelector(
+    (state: ApplicationState) => state.favorites.favorites
+  );
+  const magicCircles = useSelector(
+    (state: ApplicationState) => state.magic.data.magicCircles
+  );
+  const descriptors = useSelector(
+    (state: ApplicationState) => state.magic.data.descriptors
+  );
+  const dispatch = useDispatch();
+  let isFavorited = false;
+  let circles: { circle: MagicCircle; tier: number }[] = [];
+  let descrip: Descriptor[] = [];
 
-  const isFavorited = favorites.indexOf(magic.id) > -1;
-  const circles = magic.circles.map(c => ({
-    circle: magicCircles.filter(mc => mc.id === c.id)[0],
-    tier: c.tier
-  }));
-  const descrip = magic.circles
-    .map(c => c.descriptor.map(d => descriptors.filter(mc => mc.id === d)[0]))
-    .flat()
-    .filter((elem, index, self) => index === self.indexOf(elem));
+  useEffect(() => {
+    circles = magic.circles.map(c => {
+      return {
+        circle: magicCircles.filter(mc => mc.id === c.id)[0],
+        tier: c.tier
+      };
+    });
+    descrip = magic.circles
+      .map(c => c.descriptor.map(d => descriptors.filter(mc => mc.id === d)[0]))
+      .flat()
+      .filter((elem, index, self) => index === self.indexOf(elem));
+  }, [magic]);
+  useEffect(() => {
+    isFavorited = favorites.includes(magic.id);
+  }, [favorites, magic]);
+
+  const toggleFavorite = () => {
+    if (isFavorited) {
+      dispatch(addFavorite(magic.id));
+    } else {
+      dispatch(deleteFavorite(magic.id));
+    }
+  };
 
   return (
     <Card
@@ -78,7 +90,9 @@ const MagicCard: React.FC<Props> = ({
           <Col>
             <Typography.Text type="secondary">
               {`${circles
-                .map(c => (!c.circle ? null : `${c.circle.name} ${c.tier}`))
+                .map(c =>
+                  !c || !c.circle ? null : `${c.circle.name} ${c.tier}`
+                )
                 .join(", ")} (${descrip
                 .map(d => (!d ? null : d.name))
                 .join(", ")})`}
@@ -93,7 +107,7 @@ const MagicCard: React.FC<Props> = ({
             <Button
               shape="circle"
               type="dashed"
-              onClick={() => toggleFavorite(magic.id)}
+              onClick={() => toggleFavorite()}
             >
               <FavIcon
                 type="star"
@@ -163,21 +177,4 @@ const MagicCard: React.FC<Props> = ({
   );
 };
 
-const mapStateToProps = (state: AppState, props: OwnProps) => ({
-  magicCircles: state.magic.magicCircle,
-  descriptors: state.magic.descriptors,
-  favorites: getFavorites(state)
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) =>
-  bindActionCreators(
-    {
-      toggleFavorite
-    },
-    dispatch
-  );
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MagicCard);
+export default MagicCard;

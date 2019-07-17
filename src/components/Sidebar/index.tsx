@@ -1,32 +1,23 @@
 import React, { useState } from "react";
-import { Layout, Icon, Typography, Modal, Col, Row, Button } from "antd";
+import { Layout, Icon } from "antd";
 import { Menu } from "antd";
 import styled from "styled-components";
-import Title from "antd/lib/typography/Title";
-import { Link } from "react-router-dom";
-import { MagicCircle, Descriptor } from "../../store/magic/types";
-import ReactMarkdown from "react-markdown";
-import { connect } from "react-redux";
-import { AppState } from "../../store/index";
+import { ApplicationState } from "../../store/index";
+import { useSelector } from "react-redux";
+import { MagicCircle, Descriptor } from "../../store/ducks/magic/types";
 
 const NavMenu = styled(Menu)`
   line-height: 64px;
   float: right;
 `;
-
-interface StateProps {
-  magicCircles: MagicCircle[];
-  descriptors: Descriptor[];
-}
-
-interface OwnProps {}
-
-type Props = StateProps & OwnProps;
-
-const Sidebar: React.FC<Props> = (props: Props) => {
+const Sidebar: React.SFC = () => {
   const [open, setOpen] = useState(false);
-
-  const { magicCircles, descriptors } = props;
+  const magicCircles = useSelector(
+    (state: ApplicationState) => state.magic.data.magicCircles
+  );
+  const descriptors = useSelector(
+    (state: ApplicationState) => state.magic.data.descriptors
+  );
   const [visible, setVisible] = React.useState(false);
   const [selectedInfo, setSelectedInfo] = React.useState<
     MagicCircle | Descriptor | undefined
@@ -81,10 +72,4 @@ const Sidebar: React.FC<Props> = (props: Props) => {
     </Layout.Sider>
   );
 };
-
-const mapStateToProps = (state: AppState, props: OwnProps) => ({
-  magicCircles: state.magic.magicCircle,
-  descriptors: state.magic.descriptors
-});
-
-export default connect(mapStateToProps)(Sidebar);
+export default Sidebar;

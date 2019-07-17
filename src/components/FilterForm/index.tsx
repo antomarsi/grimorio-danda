@@ -6,7 +6,7 @@ import { Form, Row, Col, Button, Icon, Input, Switch, Select } from "antd";
 import { resetFilter, updateFilter } from "../../store/filter/actions";
 import { FilterState } from "../../store/filter/types";
 import { FormikProps, withFormik } from "formik";
-import { MagicCircle, Descriptor } from "../../store/magic/types";
+import { MagicCircle, Descriptor } from "../../store/ducks/magic/types";
 import { filterInitialState } from "../../store/filter/reducer";
 
 interface FormValues {
