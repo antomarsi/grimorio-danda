@@ -29,8 +29,7 @@ const Header = styled(Layout.Header)`
   width: "100%";
 `;
 const Navbar: React.SFC = () => {
-  const [open, setOpen] = useState(false);
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = useState(false);
 
   const magicCircles = useSelector(
     (state: ApplicationState) => state.magic.data.magicCircles

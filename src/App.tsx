@@ -1,14 +1,13 @@
 import React from "react";
 import "antd/dist/antd.css";
 import "rpg-awesome/css/rpg-awesome.min.css";
-import Routes from "./routes/index";
-import { Layout, BackTop, Icon } from "antd";
+import { Layout, BackTop, Icon, Row } from "antd";
 import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
 import { Provider } from "react-redux";
 import configureStore from "./store";
-import history from "./routes/history";
 import Footer from "./components/Footer";
+import FilterForm from "./components/FilterForm/index";
+import MagicList from "./components/MagicList/index";
 const { Content } = Layout;
 
 const store = configureStore(history);
@@ -21,7 +20,12 @@ const App: React.SFC = () => {
         <Layout>
           <Content style={{ padding: "0 50px", marginTop: 80 }}>
             <div style={{ background: "#fff", padding: 24, minHeight: 280 }}>
-              <Routes />
+              <Row>
+                <FilterForm />
+              </Row>
+              <Row>
+                <MagicList />
+              </Row>
             </div>
             <BackTop>
               <div className="ant-back-top-inner">
@@ -29,7 +33,6 @@ const App: React.SFC = () => {
               </div>
             </BackTop>
           </Content>
-          <Sidebar />
         </Layout>
         <Footer />
       </Layout>

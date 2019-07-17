@@ -54,7 +54,7 @@ export interface MagicState {
     readonly magicCircles: MagicCircle[];
   };
   readonly error: boolean;
-  readonly filter?: Filter;
+  readonly filter: Filter;
 }
 
 export const InitialState: MagicState = {
@@ -64,5 +64,12 @@ export const InitialState: MagicState = {
     magics: [],
     descriptors: [],
     magicCircles: []
+  },
+  filter: {
+    isFavorited: false,
+    nameSearch: "",
+    descriptors: [],
+    magicCircle: [],
+    tiers: []
   }
 };

@@ -23,7 +23,7 @@ export function* fetchFavorites(action: AnyAction) {
 export function* addFavorite(action: AnyAction) {
   try {
     let favs: number[] = yield select(
-      (state: ApplicationState) => state.favorites.favorites
+      (state: ApplicationState) => state.favorite.favorites
     );
     if (!favs.includes(action.payload)) {
       favs.push(action.payload);
@@ -43,7 +43,7 @@ export function* addFavorite(action: AnyAction) {
 export function* deleteFavorite(action: AnyAction) {
   try {
     let favs: number[] = yield select(
-      (state: ApplicationState) => state.favorites.favorites
+      (state: ApplicationState) => state.favorite.favorites
     );
     if (favs.includes(action.payload)) {
       const index = favs.indexOf(action.payload);

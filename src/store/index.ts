@@ -7,20 +7,17 @@ import {
   MagicState,
   InitialState as InitialStateMagic
 } from "./ducks/magic/types";
-import { RouterState, routerMiddleware } from "connected-react-router";
-import { History } from "history";
 import createSagaMiddleware from "@redux-saga/core";
 import createRootReducer from "./ducks/rootReducer";
 import rootSaga from "./ducks/rootSaga";
 
 export interface ApplicationState {
-  router?: RouterState;
-  favorites: FavoriteState;
+  favorite: FavoriteState;
   magic: MagicState;
 }
 
 const initialState: ApplicationState = {
-  favorites: InitialStateFavorite,
+  favorite: InitialStateFavorite,
   magic: InitialStateMagic
 };
 
@@ -32,9 +29,9 @@ const configureStore = (
     (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
   const sagaMiddleware = createSagaMiddleware();
-  const middlewares = [sagaMiddleware, routerMiddleware(history)];
+  const middlewares = [sagaMiddleware];
   const store: Store<ApplicationState> = createStore(
-    createRootReducer(history),
+    createRootReducer(),
     preloadedState,
     composeEnhancers(applyMiddleware(...middlewares))
   );

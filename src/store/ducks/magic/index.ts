@@ -1,10 +1,7 @@
 import {
   MagicState,
   MagicTypes,
-  InitialState,
-  Magic,
-  Descriptor,
-  MagicCircle
+  InitialState
 } from "./types";
 import { Reducer } from "redux";
 

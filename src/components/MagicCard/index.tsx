@@ -35,7 +35,7 @@ type Props = OwnProps;
 const MagicCard: React.SFC<Props> = ({ magic }: Props) => {
   const [open, setOpen] = React.useState(false);
   const favorites = useSelector(
-    (state: ApplicationState) => state.favorites.favorites
+    (state: ApplicationState) => state.favorite.favorites
   );
   const magicCircles = useSelector(
     (state: ApplicationState) => state.magic.data.magicCircles

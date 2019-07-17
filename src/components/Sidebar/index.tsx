@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Layout, Icon } from "antd";
 import { Menu } from "antd";
 import styled from "styled-components";
@@ -11,7 +11,6 @@ const NavMenu = styled(Menu)`
   float: right;
 `;
 const Sidebar: React.SFC = () => {
-  const [open, setOpen] = useState(false);
   const magicCircles = useSelector(
     (state: ApplicationState) => state.magic.data.magicCircles
   );

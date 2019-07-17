@@ -14,8 +14,9 @@ const MagicList: React.SFC = () => {
   const error = useSelector((state: ApplicationState) => state.magic.error);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchMagicRequest);
-  });
+    dispatch(fetchMagicRequest());
+    console.log("teste2");
+  }, [dispatch]);
 
   const tiers = [0, 1, 2, 3, 4, 5].map(t =>
     magics.filter(m => {
