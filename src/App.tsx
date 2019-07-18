@@ -1,5 +1,4 @@
 import React from "react";
-import "antd/dist/antd.css";
 import "rpg-awesome/css/rpg-awesome.min.css";
 import { Layout, BackTop, Icon, Row } from "antd";
 import Navbar from "./components/Navbar";
@@ -10,7 +9,7 @@ import FilterForm from "./components/FilterForm/index";
 import MagicList from "./components/MagicList/index";
 const { Content } = Layout;
 
-const store = configureStore(history);
+const store = configureStore();
 
 const App: React.SFC = () => {
   return (

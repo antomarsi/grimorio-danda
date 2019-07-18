@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { Form, Row, Col, Button, Icon, Input, Switch, Select } from "antd";
 import { MagicCircle, Filter } from "../../store/ducks/magic/types";
-import {
-  Formik,
-  FormikActions,
-  FormikProps
-} from "formik";
+import { Formik, FormikActions, FormikProps } from "formik";
 import { useSelector, useDispatch } from "react-redux";
 import { ApplicationState } from "../../store/index";
 import { setFilter } from "../../store/ducks/magic/actions";
 import { InitialState as InitialStateMagic } from "../../store/ducks/magic/types";
+import { CSSTransition } from "react-transition-group";
 
 interface SearchFormValues extends Filter {}
 
@@ -82,7 +79,7 @@ const FilterForm: React.SFC = () => {
               </Form.Item>
             </Col>
           </Row>
-          {expand && (
+          <CSSTransition in={expand} timeout={500} classNames="slide">
             <Row gutter={24}>
               <Col {...moreOptionsForm}>
                 <Form.Item>
@@ -116,27 +113,11 @@ const FilterForm: React.SFC = () => {
                     }}
                     allowClear={true}
                   >
-                    {descriptors
-                      .filter(d => {
-                        if (
-                          formikBag.values.magicCircle.length > 0 &&
-                          !magicCircles
-                            .filter((m: MagicCircle) =>
-                              formikBag.values.magicCircle.includes(m.id)
-                            )
-                            .find((mc: MagicCircle) =>
-                              mc.descriptors.includes(d.id)
-                            )
-                        ) {
-                          return false;
-                        }
-                        return true;
-                      })
-                      .map(d => (
-                        <Select.Option key={d.id} value={d.id}>
-                          {d.name}
-                        </Select.Option>
-                      ))}
+                    {descriptors.map(d => (
+                      <Select.Option key={d.id} value={d.id}>
+                        {d.name}
+                      </Select.Option>
+                    ))}
                   </Select>
                 </Form.Item>
               </Col>
@@ -161,7 +142,7 @@ const FilterForm: React.SFC = () => {
                 </Form.Item>
               </Col>
             </Row>
-          )}
+          </CSSTransition>
           <Row>
             <Col span={24} style={{ textAlign: "right" }}>
               <Button

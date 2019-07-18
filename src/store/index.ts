@@ -22,7 +22,6 @@ const initialState: ApplicationState = {
 };
 
 const configureStore = (
-  history: History,
   preloadedState: ApplicationState = initialState
 ) => {
   const composeEnhancers =

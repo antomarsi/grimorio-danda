@@ -9,6 +9,7 @@ import {
   addFavorite,
   deleteFavorite
 } from "../../store/ducks/favorite/actions";
+import { CSSTransition } from "react-transition-group";
 
 const FavIcon = styled(Icon)`
   font-size: 24px;
@@ -45,21 +46,17 @@ const MagicCard: React.SFC<Props> = ({ magic }: Props) => {
   );
   const dispatch = useDispatch();
   let isFavorited = false;
-  let circles: { circle: MagicCircle; tier: number }[] = [];
-  let descrip: Descriptor[] = [];
+  const circles = magic.circles.map(c => {
+    return {
+      circle: magicCircles.filter(mc => mc.id === c.id)[0],
+      tier: c.tier
+    };
+  });
+  const descrip = magic.circles
+  .map(c => c.descriptor.map(d => descriptors.filter(mc => mc.id === d)[0]))
+  .flat()
+  .filter((elem, index, self) => index === self.indexOf(elem));
 
-  useEffect(() => {
-    circles = magic.circles.map(c => {
-      return {
-        circle: magicCircles.filter(mc => mc.id === c.id)[0],
-        tier: c.tier
-      };
-    });
-    descrip = magic.circles
-      .map(c => c.descriptor.map(d => descriptors.filter(mc => mc.id === d)[0]))
-      .flat()
-      .filter((elem, index, self) => index === self.indexOf(elem));
-  }, [magic]);
   useEffect(() => {
     isFavorited = favorites.includes(magic.id);
   }, [favorites, magic]);
@@ -119,8 +116,8 @@ const MagicCard: React.SFC<Props> = ({ magic }: Props) => {
         </Row>
       }
     >
-      <div style={{ whiteSpace: "pre-wrap" }}>
-        {open && (
+      <CSSTransition in={open} timeout={500} classNames="slide">
+        <div style={{ whiteSpace: "pre-wrap" }}>
           <div>
             <p>
               <Typography.Text strong>Execution Time: </Typography.Text>
@@ -171,8 +168,8 @@ const MagicCard: React.SFC<Props> = ({ magic }: Props) => {
 
             <ReactMarkdown source={magic.description} />
           </div>
-        )}
-      </div>
+        </div>
+      </CSSTransition>
     </Card>
   );
 };
