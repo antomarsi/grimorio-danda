@@ -9,7 +9,7 @@ import {
   addFavorite,
   deleteFavorite
 } from "../../store/ducks/favorite/actions";
-import { CSSTransition } from "react-transition-group";
+import { SlideDown } from "react-slidedown";
 
 const FavIcon = styled(Icon)`
   font-size: 24px;
@@ -53,9 +53,9 @@ const MagicCard: React.SFC<Props> = ({ magic }: Props) => {
     };
   });
   const descrip = magic.circles
-  .map(c => c.descriptor.map(d => descriptors.filter(mc => mc.id === d)[0]))
-  .flat()
-  .filter((elem, index, self) => index === self.indexOf(elem));
+    .map(c => c.descriptor.map(d => descriptors.filter(mc => mc.id === d)[0]))
+    .flat()
+    .filter((elem, index, self) => index === self.indexOf(elem));
 
   useEffect(() => {
     isFavorited = favorites.includes(magic.id);
@@ -116,60 +116,62 @@ const MagicCard: React.SFC<Props> = ({ magic }: Props) => {
         </Row>
       }
     >
-      <CSSTransition in={open} timeout={500} classNames="slide">
-        <div style={{ whiteSpace: "pre-wrap" }}>
-          <div>
-            <p>
-              <Typography.Text strong>Execution Time: </Typography.Text>
-              <Typography.Text>{magic.executionTime}</Typography.Text>
-            </p>
-            <p>
-              <Typography.Text strong>Range: </Typography.Text>
-              <Typography.Text>{magic.range}</Typography.Text>
-            </p>
-            <p>
-              <Typography.Text strong>Duration: </Typography.Text>
-              <Typography.Text>{magic.duration}</Typography.Text>
-            </p>
-            <p>
-              <Typography.Text strong>Resistance Test: </Typography.Text>
-              <Typography.Text>{magic.resistanceTest}</Typography.Text>
-            </p>
-            {magic.target && (
+      <SlideDown closed={true}>
+        {open && (
+          <div style={{ whiteSpace: "pre-wrap" }}>
+            <div>
               <p>
-                <Typography.Text strong>Target: </Typography.Text>
-                <Typography.Text>{magic.target}</Typography.Text>
+                <Typography.Text strong>Execution Time: </Typography.Text>
+                <Typography.Text>{magic.executionTime}</Typography.Text>
               </p>
-            )}
-            {magic.area && (
               <p>
-                <Typography.Text strong>Area: </Typography.Text>
-                <Typography.Text>{magic.area}</Typography.Text>
+                <Typography.Text strong>Range: </Typography.Text>
+                <Typography.Text>{magic.range}</Typography.Text>
               </p>
-            )}
-            {magic.effect && (
               <p>
-                <Typography.Text strong>Effect: </Typography.Text>
-                <Typography.Text>{magic.effect}</Typography.Text>
+                <Typography.Text strong>Duration: </Typography.Text>
+                <Typography.Text>{magic.duration}</Typography.Text>
               </p>
-            )}
-            {magic.materialComponent && (
               <p>
-                <Typography.Text strong>Material Component: </Typography.Text>
-                <Typography.Text>{magic.materialComponent}</Typography.Text>
+                <Typography.Text strong>Resistance Test: </Typography.Text>
+                <Typography.Text>{magic.resistanceTest}</Typography.Text>
               </p>
-            )}
-            {magic.xpCost && (
-              <p>
-                <Typography.Text strong>XP Cost: </Typography.Text>
-                <Typography.Text>{magic.xpCost}</Typography.Text>
-              </p>
-            )}
+              {magic.target && (
+                <p>
+                  <Typography.Text strong>Target: </Typography.Text>
+                  <Typography.Text>{magic.target}</Typography.Text>
+                </p>
+              )}
+              {magic.area && (
+                <p>
+                  <Typography.Text strong>Area: </Typography.Text>
+                  <Typography.Text>{magic.area}</Typography.Text>
+                </p>
+              )}
+              {magic.effect && (
+                <p>
+                  <Typography.Text strong>Effect: </Typography.Text>
+                  <Typography.Text>{magic.effect}</Typography.Text>
+                </p>
+              )}
+              {magic.materialComponent && (
+                <p>
+                  <Typography.Text strong>Material Component: </Typography.Text>
+                  <Typography.Text>{magic.materialComponent}</Typography.Text>
+                </p>
+              )}
+              {magic.xpCost && (
+                <p>
+                  <Typography.Text strong>XP Cost: </Typography.Text>
+                  <Typography.Text>{magic.xpCost}</Typography.Text>
+                </p>
+              )}
 
-            <ReactMarkdown source={magic.description} />
+              <ReactMarkdown source={magic.description} />
+            </div>
           </div>
-        </div>
-      </CSSTransition>
+        )}
+      </SlideDown>
     </Card>
   );
 };

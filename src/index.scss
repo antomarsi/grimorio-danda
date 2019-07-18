@@ -32,31 +32,3 @@ body {
   text-align: center;
   font-size: 20px;
 }
-
-.slide-enter {
-  height: 0px;
-  overflow-y: hidden;
-}
-.slide-enter-active {
-  height: 64px;
-  overflow-y: hidden;
-  transition: height .5s ease;
-  -webkit-transition: height .5s ease;
-}
-.slide-enter-done {
-  height: 64px;
-}
-
-.slide-exit {
-  height: 64px;
-}
-.slide-exit-active {
-  height: 0px;
-  overflow-y: hidden;
-  transition: height .5s ease;
-  -webkit-transition: height .5s ease;
-}
-.slide-exit-done {
-  height: 0px;
-  overflow-y: hidden;
-}

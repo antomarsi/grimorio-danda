@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { ApplicationState } from "../../store/index";
 import { setFilter } from "../../store/ducks/magic/actions";
 import { InitialState as InitialStateMagic } from "../../store/ducks/magic/types";
-import { CSSTransition } from "react-transition-group";
+import { SlideDown } from "react-slidedown";
 
 interface SearchFormValues extends Filter {}
 
@@ -79,70 +79,72 @@ const FilterForm: React.SFC = () => {
               </Form.Item>
             </Col>
           </Row>
-          <CSSTransition in={expand} timeout={500} classNames="slide">
-            <Row gutter={24}>
-              <Col {...moreOptionsForm}>
-                <Form.Item>
-                  <Select
-                    mode="multiple"
-                    style={{ width: "100%" }}
-                    placeholder="Select magic circle(s)"
-                    defaultValue={formikBag.initialValues.magicCircle}
-                    onChange={(v: number[]) => {
-                      formikBag.setFieldValue("magicCircle", v);
-                    }}
-                    allowClear={true}
-                  >
-                    {magicCircles.map(mc => (
-                      <Select.Option key={mc.id} value={mc.id}>
-                        {mc.name}
-                      </Select.Option>
-                    ))}
-                  </Select>
-                </Form.Item>
-              </Col>
-              <Col {...moreOptionsForm}>
-                <Form.Item>
-                  <Select
-                    mode="multiple"
-                    style={{ width: "100%" }}
-                    placeholder="Select descriptor(s)"
-                    defaultValue={formikBag.initialValues.descriptors}
-                    onChange={(v: number[]) => {
-                      formikBag.setFieldValue("descriptors", v);
-                    }}
-                    allowClear={true}
-                  >
-                    {descriptors.map(d => (
-                      <Select.Option key={d.id} value={d.id}>
-                        {d.name}
-                      </Select.Option>
-                    ))}
-                  </Select>
-                </Form.Item>
-              </Col>
-              <Col {...moreOptionsForm}>
-                <Form.Item>
-                  <Select
-                    mode="multiple"
-                    style={{ width: "100%" }}
-                    placeholder="Select tier(s)"
-                    defaultValue={formikBag.initialValues.tiers}
-                    onChange={(v: number[]) => {
-                      formikBag.setFieldValue("tiers", v);
-                    }}
-                    allowClear={true}
-                  >
-                    {[0, 1, 2, 3, 4, 5].map(t => (
-                      <Select.Option key={t} value={t}>
-                        {t}
-                      </Select.Option>
-                    ))}
-                  </Select>
-                </Form.Item>
-              </Col>
-            </Row>
-          </CSSTransition>
+          <SlideDown closed={true}>
+            {expand && (
+              <Row gutter={24}>
+                <Col {...moreOptionsForm}>
+                  <Form.Item>
+                    <Select
+                      mode="multiple"
+                      style={{ width: "100%" }}
+                      placeholder="Select magic circle(s)"
+                      defaultValue={formikBag.initialValues.magicCircle}
+                      onChange={(v: number[]) => {
+                        formikBag.setFieldValue("magicCircle", v);
+                      }}
+                      allowClear={true}
+                    >
+                      {magicCircles.map(mc => (
+                        <Select.Option key={mc.id} value={mc.id}>
+                          {mc.name}
+                        </Select.Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col {...moreOptionsForm}>
+                  <Form.Item>
+                    <Select
+                      mode="multiple"
+                      style={{ width: "100%" }}
+                      placeholder="Select descriptor(s)"
+                      defaultValue={formikBag.initialValues.descriptors}
+                      onChange={(v: number[]) => {
+                        formikBag.setFieldValue("descriptors", v);
+                      }}
+                      allowClear={true}
+                    >
+                      {descriptors.map(d => (
+                        <Select.Option key={d.id} value={d.id}>
+                          {d.name}
+                        </Select.Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col {...moreOptionsForm}>
+                  <Form.Item>
+                    <Select
+                      mode="multiple"
+                      style={{ width: "100%" }}
+                      placeholder="Select tier(s)"
+                      defaultValue={formikBag.initialValues.tiers}
+                      onChange={(v: number[]) => {
+                        formikBag.setFieldValue("tiers", v);
+                      }}
+                      allowClear={true}
+                    >
+                      {[0, 1, 2, 3, 4, 5].map(t => (
+                        <Select.Option key={t} value={t}>
+                          {t}
+                        </Select.Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
+                </Col>
+              </Row>
+            )}
+          </SlideDown>
           <Row>
             <Col span={24} style={{ textAlign: "right" }}>
               <Button
