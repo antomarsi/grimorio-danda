@@ -1,10 +1,56 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Magic } from "../../store/ducks/magic/types";
 import MagicCard from "../MagicCard";
 import { List, Typography, Icon } from "antd";
 import { ApplicationState } from "../../store";
 import { fetchRequest as fetchMagicRequest } from "../../store/ducks/magic/actions";
+import SlideDown from "react-slidedown";
+import styled from "styled-components";
+
+const TextNoSelectable = styled.a`
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+`;
+
+interface MagicTierListProps {
+  tier: number;
+  loading: boolean;
+  values: Magic[];
+}
+
+const MagicTierList: React.SFC<MagicTierListProps> = (
+  props: MagicTierListProps
+) => {
+  const [open, setOpen] = useState(true);
+  return (
+    <div>
+      <Typography.Title level={3}>
+        <TextNoSelectable onClick={() => setOpen(!open)}>
+          <Icon type={open ? "down" : "up"} />
+        </TextNoSelectable>{" "}
+        Tier {props.tier}
+      </Typography.Title>
+      <SlideDown closed={!open}>
+        {open && (
+          <List
+            itemLayout="horizontal"
+            dataSource={props.values}
+            loading={props.loading}
+            rowKey={(m: Magic) => m.id}
+            renderItem={(magicItem: Magic) => (
+              <MagicCard magic={magicItem} key={magicItem.id} />
+            )}
+          />
+        )}
+      </SlideDown>
+    </div>
+  );
+};
 
 const MagicList: React.SFC = () => {
   const magics = useSelector(
@@ -15,8 +61,16 @@ const MagicList: React.SFC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchMagicRequest());
-    console.log("teste2");
   }, [dispatch]);
+  const [showTiers, setShowTier] = useState<number[]>([0, 1, 2, 3, 4, 5]);
+
+  const toggleTier = (tier: number) => {
+    if (showTiers.includes(tier)) {
+      setShowTier(showTiers.splice(showTiers.indexOf(tier), 1));
+    } else {
+      setShowTier([...showTiers, tier]);
+    }
+  };
 
   const tiers = [0, 1, 2, 3, 4, 5].map(t =>
     magics.filter(m => {
@@ -51,22 +105,17 @@ const MagicList: React.SFC = () => {
         </div>
       )}
       {!loading &&
-        tiers.map((values: Magic[], index: number) => {
-          if (!values.length) return false;
-          return (
-            <List
-              key={index}
-              itemLayout="horizontal"
-              dataSource={values}
-              loading={loading}
-              rowKey={(m: Magic) => m.id}
-              header={
-                <Typography.Title level={3}>Tier {index}</Typography.Title>
-              }
-              renderItem={(magicItem: Magic) => <MagicCard magic={magicItem} />}
-            />
-          );
-        })}
+        tiers.map(
+          (values: Magic[], index: number) =>
+            values.length && (
+              <MagicTierList
+                tier={index}
+                loading={loading}
+                values={values}
+                key={index}
+              />
+            )
+        )}
     </div>
   );
 };

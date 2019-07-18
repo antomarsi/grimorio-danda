@@ -45,7 +45,7 @@ const MagicCard: React.SFC<Props> = ({ magic }: Props) => {
     (state: ApplicationState) => state.magic.data.descriptors
   );
   const dispatch = useDispatch();
-  let isFavorited = false;
+  let isFavorited = favorites.includes(magic.id);
   const circles = magic.circles.map(c => {
     return {
       circle: magicCircles.filter(mc => mc.id === c.id)[0],
@@ -59,18 +59,19 @@ const MagicCard: React.SFC<Props> = ({ magic }: Props) => {
 
   useEffect(() => {
     isFavorited = favorites.includes(magic.id);
-  }, [favorites, magic]);
+  }, [favorites]);
 
   const toggleFavorite = () => {
     if (isFavorited) {
-      dispatch(addFavorite(magic.id));
-    } else {
       dispatch(deleteFavorite(magic.id));
+    } else {
+      dispatch(addFavorite(magic.id));
     }
   };
 
   return (
     <Card
+      className={open ? "open" : "closed"}
       title={
         <Row>
           <Col>
@@ -116,9 +117,9 @@ const MagicCard: React.SFC<Props> = ({ magic }: Props) => {
         </Row>
       }
     >
-      <SlideDown closed={true}>
+      <SlideDown closed={!open}>
         {open && (
-          <div style={{ whiteSpace: "pre-wrap" }}>
+          <div style={{ whiteSpace: "pre-wrap", paddingTop: "24px" }}>
             <div>
               <p>
                 <Typography.Text strong>Execution Time: </Typography.Text>

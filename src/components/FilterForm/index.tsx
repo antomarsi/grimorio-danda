@@ -43,7 +43,7 @@ const FilterForm: React.SFC = () => {
         >
           <Row gutter={24}>
             <Col span={23}>
-              <Form.Item>
+              <Form.Item style={{marginBottom:0}}>
                 <Form.Item style={{ display: "inline-block", width: "90%" }}>
                   <Input
                     size="large"
@@ -79,7 +79,7 @@ const FilterForm: React.SFC = () => {
               </Form.Item>
             </Col>
           </Row>
-          <SlideDown closed={true}>
+          <SlideDown closed={!expand} className="custom-dropdown-slidedown">
             {expand && (
               <Row gutter={24}>
                 <Col {...moreOptionsForm}>

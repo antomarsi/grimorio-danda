@@ -17,7 +17,7 @@ const App: React.SFC = () => {
       <Layout className="layout">
         <Navbar />
         <Layout>
-          <Content style={{ padding: "0 50px", marginTop: 80 }}>
+          <Content style={{ padding: "0 50px", marginTop: "1rem" }}>
             <div style={{ background: "#fff", padding: 24, minHeight: 280 }}>
               <Row>
                 <FilterForm />
