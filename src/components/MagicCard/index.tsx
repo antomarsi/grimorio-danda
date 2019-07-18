@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Card, Icon, Button, Typography, Row, Col } from "antd";
-import { Magic, MagicCircle, Descriptor } from "../../store/ducks/magic/types";
+import { Magic } from "../../store/ducks/magic/types";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import ReactMarkdown from "react-markdown";

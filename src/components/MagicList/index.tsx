@@ -53,24 +53,39 @@ const MagicTierList: React.SFC<MagicTierListProps> = (
 };
 
 const MagicList: React.SFC = () => {
-  const magics = useSelector(
-    (state: ApplicationState) => state.magic.data.magics
-  );
+  const filter = useSelector((state: ApplicationState) => state.magic.filter);
+
+  const magics = useSelector((state: ApplicationState) => {
+    return state.magic.data.magics
+      .filter(
+        m =>
+          !filter.nameSearch.length ||
+          m.name.toLowerCase().includes(filter.nameSearch.toLowerCase())
+      )
+      .filter(
+        magia =>
+          !filter.tiers.length ||
+          filter.tiers.some(x => magia.circles.some(y => y.tier === x))
+      )
+      .filter(
+        magia =>
+          !filter.magicCircle.length ||
+          filter.magicCircle.some(x => magia.circles.some(y => y.id === x))
+      )
+      .filter(
+        magia =>
+          !filter.descriptors.length ||
+          filter.descriptors.some(x =>
+            magia.circles.some(y => y.descriptor.some(z => z === x))
+          )
+      );
+  });
   const loading = useSelector((state: ApplicationState) => state.magic.loading);
   const error = useSelector((state: ApplicationState) => state.magic.error);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchMagicRequest());
   }, [dispatch]);
-  const [showTiers, setShowTier] = useState<number[]>([0, 1, 2, 3, 4, 5]);
-
-  const toggleTier = (tier: number) => {
-    if (showTiers.includes(tier)) {
-      setShowTier(showTiers.splice(showTiers.indexOf(tier), 1));
-    } else {
-      setShowTier([...showTiers, tier]);
-    }
-  };
 
   const tiers = [0, 1, 2, 3, 4, 5].map(t =>
     magics.filter(m => {
@@ -107,7 +122,7 @@ const MagicList: React.SFC = () => {
       {!loading &&
         tiers.map(
           (values: Magic[], index: number) =>
-            values.length && (
+            values.length > 0 && (
               <MagicTierList
                 tier={index}
                 loading={loading}

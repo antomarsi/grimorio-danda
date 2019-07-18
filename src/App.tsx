@@ -1,7 +1,7 @@
 import React from "react";
 import "rpg-awesome/css/rpg-awesome.min.css";
 import { Layout, BackTop, Icon, Row } from "antd";
-import Navbar from "./components/Navbar";
+import Topbar from "./components/Topbar";
 import { Provider } from "react-redux";
 import configureStore from "./store";
 import Footer from "./components/Footer";
@@ -15,10 +15,10 @@ const App: React.SFC = () => {
   return (
     <Provider store={store}>
       <Layout className="layout">
-        <Navbar />
+        <Topbar />
         <Layout>
-          <Content style={{ padding: "0 50px", marginTop: "1rem" }}>
-            <div style={{ background: "#fff", padding: 24, minHeight: 280 }}>
+          <Content className="page-content">
+            <div className="content-wrapper">
               <Row>
                 <FilterForm />
               </Row>

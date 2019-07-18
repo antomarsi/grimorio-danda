@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Layout, Icon, Typography, Modal } from "antd";
+import { Layout, Icon, Typography, Modal, Col } from "antd";
 import { Menu } from "antd";
 import styled from "styled-components";
 import Title from "antd/lib/typography/Title";
@@ -27,7 +27,10 @@ const Header = styled(Layout.Header)`
   z-index: 1;
   width: "100%";
 `;
-const Navbar: React.SFC = () => {
+
+
+
+const Topbar: React.SFC = () => {
   const [visible, setVisible] = useState(false);
 
   const magicCircles = useSelector(
@@ -42,7 +45,9 @@ const Navbar: React.SFC = () => {
 
   return (
     <Header>
-      <LogoTitle level={1}>Grimório Dand'A</LogoTitle>
+      <Col xs={0} md={12}>
+        <LogoTitle level={1}>Grimório Dand'A</LogoTitle>
+      </Col>
       <NavMenu theme="dark" mode="horizontal">
         <Menu.SubMenu key="magicCircles" title={"Magic circles"}>
           {magicCircles &&
@@ -120,4 +125,4 @@ const Navbar: React.SFC = () => {
   );
 };
 
-export default Navbar;
+export default Topbar;

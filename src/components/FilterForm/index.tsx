@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Row, Col, Button, Icon, Input, Switch, Select } from "antd";
-import { MagicCircle, Filter } from "../../store/ducks/magic/types";
+import { Filter } from "../../store/ducks/magic/types";
 import { Formik, FormikActions, FormikProps } from "formik";
 import { useSelector, useDispatch } from "react-redux";
 import { ApplicationState } from "../../store/index";
@@ -34,6 +34,7 @@ const FilterForm: React.SFC = () => {
         values: SearchFormValues,
         actions: FormikActions<SearchFormValues>
       ) => {
+        dispatch(setFilter(values));
         actions.setSubmitting(false);
       }}
       render={(formikBag: FormikProps<SearchFormValues>) => (
@@ -43,7 +44,7 @@ const FilterForm: React.SFC = () => {
         >
           <Row gutter={24}>
             <Col span={23}>
-              <Form.Item style={{marginBottom:0}}>
+              <Form.Item style={{ marginBottom: 0 }}>
                 <Form.Item style={{ display: "inline-block", width: "90%" }}>
                   <Input
                     size="large"
@@ -72,8 +73,9 @@ const FilterForm: React.SFC = () => {
                         style={{ color: "#faad14" }}
                       />
                     }
+                    defaultChecked={formikBag.initialValues.isFavorited}
                     unCheckedChildren={<Icon type="star" />}
-                    checked={formikBag.initialValues.isFavorited}
+                    checked={formikBag.values.isFavorited}
                   />
                 </Form.Item>
               </Form.Item>
@@ -145,26 +147,30 @@ const FilterForm: React.SFC = () => {
               </Row>
             )}
           </SlideDown>
-          <Row>
-            <Col span={24} style={{ textAlign: "right" }}>
+          <Row gutter={8} style={{ marginBottom: "1rem" }}>
+            <Col sm={{ offset: 12, span: 4 }}>
               <Button
+                block
                 type="primary"
                 htmlType="submit"
                 disabled={formikBag.isSubmitting}
               >
                 Search
               </Button>
+            </Col>
+            <Col sm={4}>
               <Button
-                style={{ marginLeft: 8 }}
-                onClick={() => dispatch(setFilter(InitialStateMagic.filter))}
+                block
+                onClick={() => {
+                  dispatch(setFilter(InitialStateMagic.filter));
+                  formikBag.resetForm();
+                }}
               >
                 Reset
               </Button>
-              <Button
-                size="small"
-                style={{ marginLeft: 8, fontSize: 12 }}
-                onClick={() => setExpand(!expand)}
-              >
+            </Col>
+            <Col sm={4}>
+              <Button block onClick={() => setExpand(!expand)}>
                 More Options <Icon type={expand ? "up" : "down"} />
               </Button>
             </Col>

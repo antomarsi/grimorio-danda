@@ -6,4 +6,6 @@ export const fetchSuccess = (data: Magic[]) =>
   action(MagicTypes.FETCH_SUCCESS, data);
 export const fetchError = (title: string, message: string) =>
   action(MagicTypes.FETCH_ERROR, { title, message });
-export const setFilter = (filter: Filter) => action(MagicTypes.SET_FILTER);
+
+export const setFilter = (filter: Filter) =>
+  action(MagicTypes.SET_FILTER, filter);

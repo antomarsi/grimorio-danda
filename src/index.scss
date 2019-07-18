@@ -1,6 +1,38 @@
 @import "~antd/dist/antd";
 @import "~react-slidedown/lib/slidedown.css";
 
+@mixin breakpoint($class) {
+  @if $class == xs {
+    @media (max-width: 767px) {
+      @content;
+    }
+  } @else if $class == sm {
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if $class == md {
+    @media (min-width: 992px) {
+      @content;
+    }
+  } @else if $class == lg {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint mixin supports: xs, sm, md, lg";
+  }
+}
+
+.page-content {
+  margin-top: "1rem";
+  @include breakpoint(xs) {
+    padding: 0;
+  }
+  @include breakpoint(sm) {
+    padding: 0 50px;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -33,32 +65,47 @@ body {
   text-align: center;
   font-size: 20px;
 }
-.ant-card.open {
-  .ant-card-head {
-    background-color: rgba($color: #000000, $alpha: 0.05);
-    border-radius: 25px 25px 0px 0px;
-    transition: border-radius 0.3s ease-in-out;
+.content-wrapper {
+  background-color: #FFF;
+  min-height: 280px;
+  @include breakpoint(xs) {
+    padding-top: 24px;
+    margin-right: 5px;
+    margin-left: 5px;
   }
-  .ant-card-body {
-    background-color: rgba($color: #000000, $alpha: 0.05);
-    border-radius: 0px 0px 25px 25px;
-    transition: border-radius 0.3s ease-in-out;
-    transition: background-color 0.3s ease-in-out;
+  @include breakpoint(sm) {
+    padding: 24px;
   }
 }
-.ant-card.closed {
-  .ant-card-head {
-    border-radius: 25px 25px 25px 25px;
-    transition: border-radius 0.3s ease-in-out;
-    &:hover {
+
+.ant-card {
+  &.open {
+    .ant-card-head {
       background-color: rgba($color: #000000, $alpha: 0.05);
+      border-radius: 25px 25px 0px 0px;
+      transition: border-radius 0.3s ease-in-out;
+    }
+    .ant-card-body {
+      background-color: rgba($color: #000000, $alpha: 0.05);
+      border-radius: 0px 0px 25px 25px;
+      transition: border-radius 0.3s ease-in-out;
+      transition: background-color 0.3s ease-in-out;
     }
   }
-  .ant-card-body {
-    background-color: #FFFFFF;
-    border-radius: 25px 25px 0px 0px;
-    transition: border-radius 0.3s ease-in-out;
-    transition: background-color 0.3s ease-in-out;
+  &.closed {
+    .ant-card-head {
+      border-radius: 25px 25px 25px 25px;
+      transition: border-radius 0.3s ease-in-out;
+      &:hover {
+        background-color: rgba($color: #000000, $alpha: 0.05);
+      }
+    }
+    .ant-card-body {
+      background-color: #ffffff;
+      border-radius: 25px 25px 0px 0px;
+      transition: border-radius 0.3s ease-in-out;
+      transition: background-color 0.3s ease-in-out;
+    }
   }
 }
 .ant-card-body {
