@@ -1,73 +1,42 @@
-import React, { Component } from "react";
-import "antd/dist/antd.css";
+import React from "react";
 import "rpg-awesome/css/rpg-awesome.min.css";
-import Routes from "./routes/index";
-import { History } from "history";
-import { ConnectedRouter } from "connected-react-router";
-import { Layout, BackTop, Icon } from "antd";
-import Navbar from "./components/Navbar";
-import { HashRouter } from "react-router-dom";
-import { fetchRequest } from "./store/magic/thunk";
-import { Dispatch, bindActionCreators } from "redux";
-import { connect } from "react-redux";
-const { Content, Footer } = Layout;
+import { Layout, BackTop, Icon, Row } from "antd";
+import Topbar from "./components/Topbar";
+import { Provider } from "react-redux";
+import configureStore from "./store";
+import Footer from "./components/Footer";
+import FilterForm from "./components/FilterForm/index";
+import MagicList from "./components/MagicList/index";
+const { Content } = Layout;
 
-interface AppProps {
-  history: History;
-}
+const store = configureStore();
 
-interface DispatchProps {
-  magicRequest: () => void;
-}
-
-type Props = AppProps & DispatchProps;
-
-class App extends Component<Props> {
-  componentWillMount() {
-    this.props.magicRequest();
-  }
-
-  render() {
-    const { history } = this.props;
-    return (
-      <ConnectedRouter history={history}>
-        <HashRouter>
-          <Layout className="layout">
-            <Navbar />
-            <Content style={{ padding: "0 50px", marginTop: 80 }}>
-              <div style={{ background: "#fff", padding: 24, minHeight: 280 }}>
-                <Routes />
-              </div>
-            </Content>
+const App: React.SFC = () => {
+  return (
+    <Provider store={store}>
+      <Layout className="layout">
+        <Topbar />
+        <Layout>
+          <Content className="page-content">
+            <div className="content-wrapper">
+              <Row>
+                <FilterForm />
+              </Row>
+              <Row>
+                <MagicList />
+              </Row>
+            </div>
             <BackTop>
-              <div className="ant-back-top-inner"><Icon type="arrow-up"/></div>
+              <div className="ant-back-top-inner">
+                <Icon type="arrow-up" />
+              </div>
             </BackTop>
-            <Footer style={{ textAlign: "center" }}>
-              Created by{" "}
-              <a
-                href="https://github.com/antomarsi"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Antônio Marco da Silva
-              </a>
-            </Footer>
-          </Layout>
-        </HashRouter>
-      </ConnectedRouter>
-    );
-  }
-}
-
-const mapDispatchToProps = (dispatch: Dispatch) =>
-  bindActionCreators(
-    {
-      magicRequest: fetchRequest
-    },
-    dispatch
+          </Content>
+        </Layout>
+        <Footer />
+      </Layout>
+    </Provider>
   );
+};
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(App);
+export default App;

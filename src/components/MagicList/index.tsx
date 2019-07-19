@@ -1,19 +1,100 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Magic } from "../../store/magic/types";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Magic } from "../../store/ducks/magic/types";
 import MagicCard from "../MagicCard";
 import { List, Typography, Icon } from "antd";
-import { AppState } from "../../store";
-import { getVisibleMagic } from "../../store/magic/selectores";
+import { ApplicationState } from "../../store";
+import { fetchRequest as fetchMagicRequest } from "../../store/ducks/magic/actions";
+import SlideDown from "react-slidedown";
+import styled from "styled-components";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-interface StateProps {
-  magics: Magic[];
+const TextNoSelectable = styled.a`
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+`;
+
+interface MagicTierListProps {
+  tier: number;
   loading: boolean;
+  values: Magic[];
 }
 
-type Props = StateProps;
+const MagicTierList: React.SFC<MagicTierListProps> = (
+  props: MagicTierListProps
+) => {
+  const [open, setOpen] = useState(true);
+  return (
+    <div>
+      <Typography.Title level={3}>
+        <TextNoSelectable onClick={() => setOpen(!open)}>
+          <Icon type={open ? "down" : "up"} />
+        </TextNoSelectable>{" "}
+        Tier {props.tier}
+        <Typography.Text className="magic-tier-subtitle">
+          {props.values.length} spells for this tier.
+        </Typography.Text>
+      </Typography.Title>
+      <SlideDown closed={!open}>
+        {open && (
+          <List
+            itemLayout="horizontal"
+            dataSource={props.values}
+            loading={props.loading}
+            rowKey={(m: Magic) => m.id}
+            renderItem={(magicItem: Magic) => (
+              <MagicCard magic={magicItem} key={magicItem.id} />
+            )}
+          />
+        )}
+      </SlideDown>
+    </div>
+  );
+};
 
-const MagicList: React.FC<Props> = ({ magics, loading }: Props) => {
+const MagicList: React.SFC = () => {
+  const filter = useSelector((state: ApplicationState) => state.magic.filter);
+  const favorites = useSelector(
+    (state: ApplicationState) => state.favorite.favorites
+  );
+
+  const magics = useSelector((state: ApplicationState) => {
+    return state.magic.data.magics
+      .filter(m => !filter.isFavorited || favorites.includes(m.id))
+      .filter(
+        m =>
+          !filter.nameSearch.length ||
+          m.name.toLowerCase().includes(filter.nameSearch.toLowerCase())
+      )
+      .filter(
+        magia =>
+          !filter.tiers.length ||
+          filter.tiers.some(x => magia.circles.some(y => y.tier === x))
+      )
+      .filter(
+        magia =>
+          !filter.magicCircle.length ||
+          filter.magicCircle.some(x => magia.circles.some(y => y.id === x))
+      )
+      .filter(
+        magia =>
+          !filter.descriptors.length ||
+          filter.descriptors.some(x =>
+            magia.circles.some(y => y.descriptor.some(z => z === x))
+          )
+      );
+  });
+  const loading = useSelector((state: ApplicationState) => state.magic.loading);
+  const error = useSelector((state: ApplicationState) => state.magic.error);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchMagicRequest());
+  }, [dispatch]);
+
   const tiers = [0, 1, 2, 3, 4, 5].map(t =>
     magics.filter(m => {
       return m.circles.find(c => c.tier === t);
@@ -37,30 +118,32 @@ const MagicList: React.FC<Props> = ({ magics, loading }: Props) => {
             <Typography.Title level={4}>No spell found!</Typography.Title>
           </div>
         )}
-      {!loading &&
-        tiers.map((values: Magic[], index: number) => {
-          if (!values.length) return false;
-          return (
-            <List
-              key={index}
-              itemLayout="horizontal"
-              dataSource={values}
-              loading={loading}
-              rowKey={(m: Magic) => m.id}
-              header={
-                <Typography.Title level={3}>Tier {index}</Typography.Title>
-              }
-              renderItem={(magicItem: Magic) => <MagicCard magic={magicItem} />}
-            />
-          );
-        })}
+      {error && (
+        <div style={{ textAlign: "center", fontSize: 48 }}>
+          <Icon type="frown" />
+          <br />
+          <Typography.Title level={4}>
+            That's so sad... Bard, play Despacito!
+          </Typography.Title>
+        </div>
+      )}
+      {!loading && (
+        <TransitionGroup className="magic-tier-list">
+          {tiers.map(
+            (values: Magic[], index: number) =>
+              values.length > 0 && (
+                <CSSTransition key={index} timeout={500} className="magic-tier">
+                  <MagicTierList
+                    tier={index}
+                    loading={loading}
+                    values={values}
+                  />
+                </CSSTransition>
+              )
+          )}
+        </TransitionGroup>
+      )}
     </div>
   );
 };
-
-const mapStateToProps = (state: AppState) => ({
-  loading: state.magic.loading,
-  magics: getVisibleMagic(state)
-});
-
-export default connect(mapStateToProps)(MagicList);
+export default MagicList;
