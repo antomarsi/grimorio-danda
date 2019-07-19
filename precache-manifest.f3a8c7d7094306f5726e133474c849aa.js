@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7bf786db66ef79e1f7be441cd4be8ccc",
+    "revision": "29f297a1d7fa2eaec07a1651e84f8516",
     "url": "/grimorio-danda/index.html"
   },
   {
-    "revision": "1a908b018d3f98d33d4a",
-    "url": "/grimorio-danda/static/css/2.3eca3f59.chunk.css"
+    "revision": "cabd00329a5572d7d705",
+    "url": "/grimorio-danda/static/css/2.f5d3583e.chunk.css"
   },
   {
-    "revision": "6a393899ed933d3108f7",
-    "url": "/grimorio-danda/static/css/main.668fb830.chunk.css"
+    "revision": "7dcd67bd447dfd7f5798",
+    "url": "/grimorio-danda/static/css/main.b0863455.chunk.css"
   },
   {
-    "revision": "1a908b018d3f98d33d4a",
-    "url": "/grimorio-danda/static/js/2.20460795.chunk.js"
+    "revision": "cabd00329a5572d7d705",
+    "url": "/grimorio-danda/static/js/2.39b46fcb.chunk.js"
   },
   {
-    "revision": "6a393899ed933d3108f7",
-    "url": "/grimorio-danda/static/js/main.47e84b4b.chunk.js"
+    "revision": "7dcd67bd447dfd7f5798",
+    "url": "/grimorio-danda/static/js/main.51a5aa2a.chunk.js"
   },
   {
     "revision": "928c3f2ed2e7ac997ae1",
