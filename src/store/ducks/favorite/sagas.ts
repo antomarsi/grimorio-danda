@@ -25,10 +25,8 @@ export function* addFavorite(action: AnyAction) {
     let favs: number[] = yield select(
       (state: ApplicationState) => state.favorite.favorites
     );
-    console.log(favs);
     if (!favs.includes(action.payload)) {
       favs.push(action.payload);
-      yield call([localStorage, "setItem"], "favorites", JSON.stringify(favs));
       yield put(fetchSuccess(favs));
     }
   } catch (err) {
@@ -46,11 +44,9 @@ export function* deleteFavorite(action: AnyAction) {
     let favs: number[] = yield select(
       (state: ApplicationState) => state.favorite.favorites
     );
-    console.log(favs);
     if (favs.includes(action.payload)) {
       const index = favs.indexOf(action.payload);
       favs = favs.splice(index, 1);
-      yield call([localStorage, "setItem"], "favorites", JSON.stringify(favs));
       yield put(fetchSuccess(favs));
     }
   } catch (err) {

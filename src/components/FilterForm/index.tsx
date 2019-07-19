@@ -148,7 +148,7 @@ const FilterForm: React.SFC = () => {
             )}
           </SlideDown>
           <Row gutter={8} style={{ marginBottom: "1rem" }}>
-            <Col sm={{ offset: 12, span: 4 }}>
+            <Col sm={{ offset: 11, span: 4 }}>
               <Button
                 block
                 type="primary"
@@ -164,6 +164,7 @@ const FilterForm: React.SFC = () => {
                 onClick={() => {
                   dispatch(setFilter(InitialStateMagic.filter));
                   formikBag.resetForm();
+                  formikBag.values = formikBag.initialValues;
                 }}
               >
                 Reset
@@ -171,7 +172,7 @@ const FilterForm: React.SFC = () => {
             </Col>
             <Col sm={4}>
               <Button block onClick={() => setExpand(!expand)}>
-                More Options <Icon type={expand ? "up" : "down"} />
+                + Options <Icon type={expand ? "up" : "down"} />
               </Button>
             </Col>
           </Row>

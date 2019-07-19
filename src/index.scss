@@ -66,8 +66,8 @@ body {
   font-size: 20px;
 }
 .content-wrapper {
-  background-color: #FFF;
-  min-height: 280px;
+  background-color: #fff;
+  min-height: 1vh;
   @include breakpoint(xs) {
     padding-top: 24px;
     margin-right: 5px;
@@ -116,4 +116,24 @@ body {
   overflow-x: hidden;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
+}
+.magic-tier-enter {
+  opacity: 0;
+}
+.magic-tier-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.magic-tier-exit {
+  opacity: 1;
+}
+.magic-tier-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
+.magic-tier-subtitle {
+  opacity: 0.5;
+  font-size: 12px;
+  font-style: italic;
+  margin-left: 1rem;
 }

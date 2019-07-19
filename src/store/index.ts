@@ -10,6 +10,7 @@ import {
 import createSagaMiddleware from "@redux-saga/core";
 import createRootReducer from "./ducks/rootReducer";
 import rootSaga from "./ducks/rootSaga";
+import { saveFavorites } from "../services/localStorage";
 
 export interface ApplicationState {
   favorite: FavoriteState;
@@ -21,9 +22,7 @@ const initialState: ApplicationState = {
   magic: InitialStateMagic
 };
 
-const configureStore = (
-  preloadedState: ApplicationState = initialState
-) => {
+const configureStore = (preloadedState: ApplicationState = initialState) => {
   const composeEnhancers =
     (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -34,6 +33,10 @@ const configureStore = (
     preloadedState,
     composeEnhancers(applyMiddleware(...middlewares))
   );
+
+  store.subscribe(() => {
+    saveFavorites([...store.getState().favorite.favorites]);
+  });
 
   sagaMiddleware.run(rootSaga);
 

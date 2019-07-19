@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Card, Icon, Button, Typography, Row, Col } from "antd";
 import { Magic } from "../../store/ducks/magic/types";
 import styled from "styled-components";
@@ -15,8 +15,7 @@ const FavIcon = styled(Icon)`
   font-size: 24px;
   &.favorited {
     color: #faad14 !important;
-  }import { ApplicationState } from '../../store/index';
-
+  }
 `;
 
 const TextNoSelectable = styled.a`
@@ -56,10 +55,6 @@ const MagicCard: React.SFC<Props> = ({ magic }: Props) => {
     .map(c => c.descriptor.map(d => descriptors.filter(mc => mc.id === d)[0]))
     .flat()
     .filter((elem, index, self) => index === self.indexOf(elem));
-
-  useEffect(() => {
-    isFavorited = favorites.includes(magic.id);
-  }, [favorites]);
 
   const toggleFavorite = () => {
     if (isFavorited) {

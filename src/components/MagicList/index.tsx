@@ -7,6 +7,7 @@ import { ApplicationState } from "../../store";
 import { fetchRequest as fetchMagicRequest } from "../../store/ducks/magic/actions";
 import SlideDown from "react-slidedown";
 import styled from "styled-components";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const TextNoSelectable = styled.a`
   -webkit-touch-callout: none; /* iOS Safari */
@@ -34,6 +35,9 @@ const MagicTierList: React.SFC<MagicTierListProps> = (
           <Icon type={open ? "down" : "up"} />
         </TextNoSelectable>{" "}
         Tier {props.tier}
+        <Typography.Text className="magic-tier-subtitle">
+          {props.values.length} spells for this tier.
+        </Typography.Text>
       </Typography.Title>
       <SlideDown closed={!open}>
         {open && (
@@ -54,9 +58,13 @@ const MagicTierList: React.SFC<MagicTierListProps> = (
 
 const MagicList: React.SFC = () => {
   const filter = useSelector((state: ApplicationState) => state.magic.filter);
+  const favorites = useSelector(
+    (state: ApplicationState) => state.favorite.favorites
+  );
 
   const magics = useSelector((state: ApplicationState) => {
     return state.magic.data.magics
+      .filter(m => !filter.isFavorited || favorites.includes(m.id))
       .filter(
         m =>
           !filter.nameSearch.length ||
@@ -119,18 +127,22 @@ const MagicList: React.SFC = () => {
           </Typography.Title>
         </div>
       )}
-      {!loading &&
-        tiers.map(
-          (values: Magic[], index: number) =>
-            values.length > 0 && (
-              <MagicTierList
-                tier={index}
-                loading={loading}
-                values={values}
-                key={index}
-              />
-            )
-        )}
+      {!loading && (
+        <TransitionGroup className="magic-tier-list">
+          {tiers.map(
+            (values: Magic[], index: number) =>
+              values.length > 0 && (
+                <CSSTransition key={index} timeout={500} className="magic-tier">
+                  <MagicTierList
+                    tier={index}
+                    loading={loading}
+                    values={values}
+                  />
+                </CSSTransition>
+              )
+          )}
+        </TransitionGroup>
+      )}
     </div>
   );
 };
